@@ -1,1 +1,3 @@
-# minecraft-python-cartographer
+# A Minecraft cartographer, written in Python
+
+... first try
