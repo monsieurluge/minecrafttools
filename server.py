@@ -3,7 +3,10 @@
 from player import Player
 from world import World
 
-import json, re, string
+import json
+import os
+import re
+# import string
 
 class Server:
 
@@ -11,14 +14,30 @@ class Server:
         # Default properties
         self.minecraftDirectory = minecraftDirectory
         self.players = []
+        self.properties = {}
         # Some init methods
         self.loadProperties()
         self.loadWhitelist()
-        self.loadWorld()
 
-    # Now : load some useful properties
-    # TODO : load the entire properties set
+    # --------------------------------------------------------------------------
+    # Generate the cartography for the loaded world, depending on the ingame crafted maps
+    #
+    # @param string cartographyName
+    # --------------------------------------------------------------------------
+    def generateCartography(self, cartographyName):
+        self.world.generateCartography(cartographyName)
+
+    # --------------------------------------------------------------------------
+    # Load the active world (check server.properties -> levelName property)
+    # --------------------------------------------------------------------------
+    def loadActiveWorld(self):
+        self.world = World(os.path.join(self.minecraftDirectory, self.properties['level-name']))
+
+    # --------------------------------------------------------------------------
+    # Load the server properties
+    # --------------------------------------------------------------------------
     def loadProperties(self):
+        # Try to open the properties file
         try:
             with open(self.minecraftDirectory + '/server.properties') as propertiesFile:
                 content = propertiesFile.readlines()
@@ -31,24 +50,21 @@ class Server:
                 # Permission denied
                 print 'Le fichier de configuration du serveur ne peut pas être lu : ' + error.strerror
                 sys.exit(2)
-        # Read the property file and load some properties
+        # Read and load the property file
         for line in content:
+            # Check if the line read is like "property=value"
             matches = re.match('^([a-zA-Z-]+)=(.+)', line)
             if not matches:
                 continue
-            property = matches.group(1)
-            value = matches.group(2)
-            try:
-                setterName = 'set' + self.propertyNameToCamelCase(property)
-                setterMethod = getattr(self, setterName)
-            except:
-                continue
-            setterMethod(value)
+            # Then, save the property & its value
+            self.properties[matches.group(1)] = matches.group(2)
 
+    # --------------------------------------------------------------------------
     # Load the whitelist
+    # --------------------------------------------------------------------------
     def loadWhitelist(self):
         try:
-            with open(self.minecraftDirectory + '/whitelist.json') as whitelistFile:
+            with open(os.path.join(self.minecraftDirectory, 'whitelist.json')) as whitelistFile:
                 whitelist = json.load(whitelistFile)
         except IOError as error:
             print 'Erreur lors de l\'accès à la whitelist : ' + error.errno
@@ -58,31 +74,16 @@ class Server:
             player = Player(entry['uuid'], entry['name'])
             self.players.append(player)
 
+    # --------------------------------------------------------------------------
     # Load the active world
-    def loadWorld(self):
-        self.world = World(self.minecraftDirectory + '/' + self.levelName)
+    # --------------------------------------------------------------------------
+    def loadWorld(self, levelName):
+        self.world = World(os.path.join(self.minecraftDirectory, levelName))
 
-    # Format a property name, like level-name, to CamelCase
-    def propertyNameToCamelCase(self, propertyName):
-        newName = ''
-        for element in string.split(propertyName, '-'):
-            newName += string.capitalize(element)
-        return newName
-
-    def setHardcore(self, value):
-        self.hardcore = value
-
-    def setLevelName(self, value):
-        self.levelName = value
-
-    def setLevelSeed(self, value):
-        self.levelSeed = value
-
-    def setMaxWorldSize(self, value):
-        self.maxWorldSize = value
-
-    def setMotd(self, value):
-        self.motd = value
-
-    def setSpawnProtection(self, value):
-        self.spawnProtection = value
+    # --------------------------------------------------------------------------
+    # Returns the value of the given property name
+    # --------------------------------------------------------------------------
+    def getProperty(self, propertyName):
+        if propertyName in self.properties:
+            return self.properties[propertyName]
+        return ''
