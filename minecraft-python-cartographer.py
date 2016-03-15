@@ -1,21 +1,41 @@
 # coding: utf8
 
 from server import Server
-from config import Config
 
-import sys, getopt
+import json
+import os
+import sys
+import getopt
+import user
 
 # ------------------------------------------------------------------------------
 # Main script
 # Returns usage and stops if wrong arguments were given
 # ------------------------------------------------------------------------------
 def main(arguments):
+    minecraftDirectory  = '~/.minecraft'
+    outputDirectory     = '~/.minecraft/cartography'
+
     # Load the config
-    config = Config()
+    try:
+        with open(os.getcwd() + '/config.json') as configFile:
+            # Get the config data
+            configData          = json.load(configFile)
+            minecraftDirectory  = configData['Minecraft directory']
+            outputDirectory     = configData['Output directory']
+    except IOError as error:
+        if error.errno == 2:
+            # File not found
+            print 'Le fichier de configuration n\'a pas été trouvé. Création automatique.'
+            createDefaultConfigFile(minecraftDirectory, outputDirectory)
+        elif error.errno == 13:
+            # Permission denied
+            print 'Le fichier de configuration ne peut pas être lu : ' + error.strerror
+            sys.exit(2)
 
     # Check the launch parameters
     try:
-        opts, args = getopt.getopt(arguments, 'hcd:', ['cartographyname=', 'minecraftdirectory='])
+        opts, args = getopt.getopt(arguments, 'hdo:', ['minecraftdirectory=', 'outputdirectory'])
     except getopt.GetoptError as errorMessage:
         print str(errorMessage)
         usage()
@@ -26,23 +46,37 @@ def main(arguments):
         if opt in ("-h", "--help"):
             usage()
             sys.exit()
-        if opt in ('-c', '--cartographyname'):
-            config.setCartographyName(arg)
         if opt in ('-d', '--minecraftdirectory'):
-            config.setMinecraftDirectory(arg)
+            minecraftDirectory = arg
+        if opt in ('-o', '--outputdirectory'):
+            outputDirectory = arg
 
     # Load the server
-    server = Server(config.getMinecraftDirectory())
-    server.loadActiveWorld()
+    server = Server(minecraftDirectory)
 
     # And generate the cartography
-    server.generateCartography(config.getCartographyName())
+    # server.generateCartography(outputDirectory)
+
+# ------------------------------------------------------------------------------
+# Create the default config file
+# ------------------------------------------------------------------------------
+def createDefaultConfigFile(minecraftDirectory, outputDirectory):
+    configFile = open(os.getcwd() + '/config.json', 'w')
+
+    # Write the default config values
+    configFile.write(
+        '{"Minecraft directory" : "' + minecraftDirectory
+            + '","Output directory" : "' + outputDirectory
+            + '"}')
+
+    # Then close the file
+    configFile.close()
 
 # ------------------------------------------------------------------------------
 # Returns the script usage
 # ------------------------------------------------------------------------------
 def usage():
-    print 'Options : [-c|--cartographyname] [-d|--minecraftdirectory]'
+    print 'Options : [-d|--minecraftdirectory] [-o|--outputdirectory]'
 
 # ------------------------------------------------------------------------------
 # Launch the script

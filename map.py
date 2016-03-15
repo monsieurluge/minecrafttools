@@ -9,13 +9,13 @@ class Map:
         self.players = None
 
     # --------------------------------------------------------------------------
-    # TODO : methode definition
+    # TODO : method definition
     # --------------------------------------------------------------------------
     def loadMaps(self):
         pass
 
     # --------------------------------------------------------------------------
-    # TODO : methode definition
+    # TODO : method definition
     # --------------------------------------------------------------------------
     def getPlayers(self):
         if self.players != None:
