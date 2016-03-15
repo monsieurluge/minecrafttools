@@ -1,0 +1,896 @@
+<html>
+<style>
+    body {
+        background-color: #333333;
+    }
+
+    table {
+        width: 600px;
+        margin:50px auto;
+        border-radius: 3px;
+        padding: 20px;
+        background-color: #FFFFFF;
+    }
+
+    tr:nth-child(even) {
+        background-color: #E4E4E4;
+        border: none;
+ 3  }
+</style>
+<body>
+<table class="wikitable sortable">
+<caption>Color Table</caption>
+<tr>
+<th>ID</th>
+<th class="unsortable" width="100px">Color</th>
+<th width="100px">RGB</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>0</td>
+<td></td>
+<td>Transparent</td>
+<td>Not explored</td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td>Transparent</td>
+<td>Not explored</td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td>Transparent</td>
+<td>Not explored</td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td>Transparent</td>
+<td>Not explored</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="background-color: rgb(88,124,39);"></td>
+<td>88,124,39</td>
+<td>Grass</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="background-color: rgb(108,151,47);"></td>
+<td>108,151,47</td>
+<td>Grass</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="background-color: rgb(125,176,55);"></td>
+<td>125,176,55</td>
+<td>Grass</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="background-color: rgb(66,93,29);"></td>
+<td>66,93,29</td>
+<td>Grass</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="background-color: rgb(172,162,114);"></td>
+<td>172,162,114</td>
+<td>Sand/Gravel</td>
+</tr>
+<tr>
+<td>9</td>
+<td style="background-color: rgb(210,199,138);"></td>
+<td>210,199,138</td>
+<td>Sand/Gravel</td>
+</tr>
+<tr>
+<td>10</td>
+<td style="background-color: rgb(244,230,161);"></td>
+<td>244,230,161</td>
+<td>Sand/Gravel</td>
+</tr>
+<tr>
+<td>11</td>
+<td style="background-color: rgb(128,122,85);"></td>
+<td>128,122,85</td>
+<td>Sand/Gravel</td>
+</tr>
+<tr>
+<td>12</td>
+<td style="background-color: rgb(138,138,138);"></td>
+<td>138,138,138</td>
+<td>Other</td>
+</tr>
+<tr>
+<td>13</td>
+<td style="background-color: rgb(169,169,169);"></td>
+<td>169,169,169</td>
+<td>Other</td>
+</tr>
+<tr>
+<td>14</td>
+<td style="background-color: rgb(197,197,197);"></td>
+<td>197,197,197</td>
+<td>Other</td>
+</tr>
+<tr>
+<td>15</td>
+<td style="background-color: rgb(104,104,104);"></td>
+<td>104,104,104</td>
+<td>Other</td>
+</tr>
+<tr>
+<td>16</td>
+<td style="background-color: rgb(178,0,0);"></td>
+<td>178,0,0</td>
+<td>Lava/TNT</td>
+</tr>
+<tr>
+<td>17</td>
+<td style="background-color: rgb(217,0,0);"></td>
+<td>217,0,0</td>
+<td>Lava/TNT</td>
+</tr>
+<tr>
+<td>18</td>
+<td style="background-color: rgb(252,0,0);"></td>
+<td>252,0,0</td>
+<td>Lava/TNT</td>
+</tr>
+<tr>
+<td>19</td>
+<td style="background-color: rgb(133,0,0);"></td>
+<td>133,0,0</td>
+<td>Lava/TNT</td>
+</tr>
+<tr>
+<td>20</td>
+<td style="background-color: rgb(111,111,178);"></td>
+<td>111,111,178</td>
+<td>Ice/Packed Ice</td>
+</tr>
+<tr>
+<td>21</td>
+<td style="background-color: rgb(136,136,217);"></td>
+<td>136,136,217</td>
+<td>Ice/Packed Ice</td>
+</tr>
+<tr>
+<td>22</td>
+<td style="background-color: rgb(158,158,252);"></td>
+<td>158,158,252</td>
+<td>Ice/Packed Ice</td>
+</tr>
+<tr>
+<td>23</td>
+<td style="background-color: rgb(83,83,133);"></td>
+<td>83,83,133</td>
+<td>Ice/Packed Ice</td>
+</tr>
+<tr>
+<td>24</td>
+<td style="background-color: rgb(116,116,116);"></td>
+<td>116,116,116</td>
+<td>Metal</td>
+</tr>
+<tr>
+<td>25</td>
+<td style="background-color: rgb(142,142,142);"></td>
+<td>142,142,142</td>
+<td>Metal</td>
+</tr>
+<tr>
+<td>26</td>
+<td style="background-color: rgb(165,165,165);"></td>
+<td>165,165,165</td>
+<td>Metal</td>
+</tr>
+<tr>
+<td>27</td>
+<td style="background-color: rgb(87,87,87);"></td>
+<td>87,87,87</td>
+<td>Metal</td>
+</tr>
+<tr>
+<td>28</td>
+<td style="background-color: rgb(0,86,0);"></td>
+<td>0,86,0</td>
+<td>Plants</td>
+</tr>
+<tr>
+<td>29</td>
+<td style="background-color: rgb(0,105,0);"></td>
+<td>0,105,0</td>
+<td>Plants</td>
+</tr>
+<tr>
+<td>30</td>
+<td style="background-color: rgb(0,123,0);"></td>
+<td>0,123,0</td>
+<td>Plants</td>
+</tr>
+<tr>
+<td>31</td>
+<td style="background-color: rgb(0,64,0);"></td>
+<td>0,64,0</td>
+<td>Plants</td>
+</tr>
+<tr>
+<td>32</td>
+<td style="background-color: rgb(178,178,178);"></td>
+<td>178,178,178</td>
+<td>White Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>33</td>
+<td style="background-color: rgb(217,217,217);"></td>
+<td>217,217,217</td>
+<td>White Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>34</td>
+<td style="background-color: rgb(252,252,252);"></td>
+<td>252,252,252</td>
+<td>White Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>35</td>
+<td style="background-color: rgb(133,133,133);"></td>
+<td>133,133,133</td>
+<td>White Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>36</td>
+<td style="background-color: rgb(114,117,127);"></td>
+<td>114,117,127</td>
+<td>Clay</td>
+</tr>
+<tr>
+<td>37</td>
+<td style="background-color: rgb(139,142,156);"></td>
+<td>139,142,156</td>
+<td>Clay</td>
+</tr>
+<tr>
+<td>38</td>
+<td style="background-color: rgb(162,166,182);"></td>
+<td>162,166,182</td>
+<td>Clay</td>
+</tr>
+<tr>
+<td>39</td>
+<td style="background-color: rgb(85,87,96);"></td>
+<td>85,87,96</td>
+<td>Clay</td>
+</tr>
+<tr>
+<td>40</td>
+<td style="background-color: rgb(105,75,53);"></td>
+<td>105,75,53</td>
+<td>Dirt</td>
+</tr>
+<tr>
+<td>41</td>
+<td style="background-color: rgb(128,93,65);"></td>
+<td>128,93,65</td>
+<td>Dirt</td>
+</tr>
+<tr>
+<td>42</td>
+<td style="background-color: rgb(149,108,76);"></td>
+<td>149,108,76</td>
+<td>Dirt</td>
+</tr>
+<tr>
+<td>43</td>
+<td style="background-color: rgb(78,56,39);"></td>
+<td>78,56,39</td>
+<td>Dirt</td>
+</tr>
+<tr>
+<td>44</td>
+<td style="background-color: rgb(78,78,78);"></td>
+<td>78,78,78</td>
+<td>Stone/Cobblestone/Ore</td>
+</tr>
+<tr>
+<td>45</td>
+<td style="background-color: rgb(95,95,95);"></td>
+<td>95,95,95</td>
+<td>Stone/Cobblestone/Ore</td>
+</tr>
+<tr>
+<td>46</td>
+<td style="background-color: rgb(111,111,111);"></td>
+<td>111,111,111</td>
+<td>Stone/Cobblestone/Ore</td>
+</tr>
+<tr>
+<td>47</td>
+<td style="background-color: rgb(58,58,58);"></td>
+<td>58,58,58</td>
+<td>Stone/Cobblestone/Ore</td>
+</tr>
+<tr>
+<td>48</td>
+<td style="background-color: rgb(44,44,178);"></td>
+<td>44,44,178</td>
+<td>Water</td>
+</tr>
+<tr>
+<td>49</td>
+<td style="background-color: rgb(54,54,217);"></td>
+<td>54,54,217</td>
+<td>Water</td>
+</tr>
+<tr>
+<td>50</td>
+<td style="background-color: rgb(63,63,252);"></td>
+<td>63,63,252</td>
+<td>Water</td>
+</tr>
+<tr>
+<td>51</td>
+<td style="background-color: rgb(33,33,133);"></td>
+<td>33,33,133</td>
+<td>Water</td>
+</tr>
+<tr>
+<td>52</td>
+<td style="background-color: rgb(99,83,49);"></td>
+<td>99,83,49</td>
+<td>Log/Tree/Wood</td>
+</tr>
+<tr>
+<td>53</td>
+<td style="background-color: rgb(122,101,61);"></td>
+<td>122,101,61</td>
+<td>Log/Tree/Wood</td>
+</tr>
+<tr>
+<td>54</td>
+<td style="background-color: rgb(141,118,71);"></td>
+<td>141,118,71</td>
+<td>Log/Tree/Wood</td>
+</tr>
+<tr>
+<td>55</td>
+<td style="background-color: rgb(74,62,38);"></td>
+<td>74,62,38</td>
+<td>Log/Tree/Wood</td>
+</tr>
+<tr>
+<td>56</td>
+<td style="background-color: rgb(178,175,170);"></td>
+<td>178,175,170</td>
+<td>Diorite</td>
+</tr>
+<tr>
+<td>57</td>
+<td style="background-color: rgb(217,214,208);"></td>
+<td>217,214,208</td>
+<td>Diorite</td>
+</tr>
+<tr>
+<td>58</td>
+<td style="background-color: rgb(252,249,242);"></td>
+<td>252,249,242</td>
+<td>Diorite</td>
+</tr>
+<tr>
+<td>59</td>
+<td style="background-color: rgb(133,131,127);"></td>
+<td>133,131,127</td>
+<td>Diorite</td>
+</tr>
+<tr>
+<td>60</td>
+<td style="background-color: rgb(150,88,36);"></td>
+<td>150,88,36</td>
+<td>Orange Wool/Carpet/Stained Clay, Pumpkin, Hardened Clay, Acacia Items</td>
+</tr>
+<tr>
+<td>61</td>
+<td style="background-color: rgb(184,108,43);"></td>
+<td>184,108,43</td>
+<td>Orange Wool/Carpet/Stained Clay, Pumpkin, Hardened Clay, Acacia Items</td>
+</tr>
+<tr>
+<td>62</td>
+<td style="background-color: rgb(213,125,50);"></td>
+<td>213,125,50</td>
+<td>Orange Wool/Carpet/Stained Clay, Pumpkin, Hardened Clay, Acacia Items</td>
+</tr>
+<tr>
+<td>63</td>
+<td style="background-color: rgb(113,66,27);"></td>
+<td>113,66,27</td>
+<td>Orange Wool/Carpet/Stained Clay, Pumpkin, Hardened Clay, Acacia Items</td>
+</tr>
+<tr>
+<td>64</td>
+<td style="background-color: rgb(124,52,150);"></td>
+<td>124,52,150</td>
+<td>Magenta Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>65</td>
+<td style="background-color: rgb(151,64,184);"></td>
+<td>151,64,184</td>
+<td>Magenta Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>66</td>
+<td style="background-color: rgb(176,75,213);"></td>
+<td>176,75,213</td>
+<td>Magenta Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>67</td>
+<td style="background-color: rgb(93,39,113);"></td>
+<td>93,39,113</td>
+<td>Magenta Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>68</td>
+<td style="background-color: rgb(71,107,150);"></td>
+<td>71,107,150</td>
+<td>Light Blue Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>69</td>
+<td style="background-color: rgb(87,130,184);"></td>
+<td>87,130,184</td>
+<td>Light Blue Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>70</td>
+<td style="background-color: rgb(101,151,213);"></td>
+<td>101,151,213</td>
+<td>Light Blue Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>71</td>
+<td style="background-color: rgb(53,80,113);"></td>
+<td>53,80,113</td>
+<td>Light Blue Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>72</td>
+<td style="background-color: rgb(159,159,36);"></td>
+<td>159,159,36</td>
+<td>Yellow Wool/Carpet/Stained Clay, Sponge</td>
+</tr>
+<tr>
+<td>73</td>
+<td style="background-color: rgb(195,195,43);"></td>
+<td>195,195,43</td>
+<td>Yellow Wool/Carpet/Stained Clay, Sponge</td>
+</tr>
+<tr>
+<td>74</td>
+<td style="background-color: rgb(226,226,50);"></td>
+<td>226,226,50</td>
+<td>Yellow Wool/Carpet/Stained Clay, Sponge</td>
+</tr>
+<tr>
+<td>75</td>
+<td style="background-color: rgb(120,120,27);"></td>
+<td>120,120,27</td>
+<td>Yellow Wool/Carpet/Stained Clay, Sponge</td>
+</tr>
+<tr>
+<td>76</td>
+<td style="background-color: rgb(88,142,17);"></td>
+<td>88,142,17</td>
+<td>Lime Wool/Carpet/Stained Clay, Melon</td>
+</tr>
+<tr>
+<td>77</td>
+<td style="background-color: rgb(108,174,21);"></td>
+<td>108,174,21</td>
+<td>Lime Wool/Carpet/Stained Clay, Melon</td>
+</tr>
+<tr>
+<td>78</td>
+<td style="background-color: rgb(125,202,25);"></td>
+<td>125,202,25</td>
+<td>Lime Wool/Carpet/Stained Clay, Melon</td>
+</tr>
+<tr>
+<td>79</td>
+<td style="background-color: rgb(66,107,13);"></td>
+<td>66,107,13</td>
+<td>Lime Wool/Carpet/Stained Clay, Melon</td>
+</tr>
+<tr>
+<td>80</td>
+<td style="background-color: rgb(168,88,115);"></td>
+<td>168,88,115</td>
+<td>Pink Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>81</td>
+<td style="background-color: rgb(206,108,140);"></td>
+<td>206,108,140</td>
+<td>Pink Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>82</td>
+<td style="background-color: rgb(239,125,163);"></td>
+<td>239,125,163</td>
+<td>Pink Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>83</td>
+<td style="background-color: rgb(126,66,86);"></td>
+<td>126,66,86</td>
+<td>Pink Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>84</td>
+<td style="background-color: rgb(52,52,52);"></td>
+<td>52,52,52</td>
+<td>Grey Wool/Carpet/Stained Clay, Cauldron</td>
+</tr>
+<tr>
+<td>85</td>
+<td style="background-color: rgb(64,64,64);"></td>
+<td>64,64,64</td>
+<td>Grey Wool/Carpet/Stained Clay, Cauldron</td>
+</tr>
+<tr>
+<td>86</td>
+<td style="background-color: rgb(75,75,75);"></td>
+<td>75,75,75</td>
+<td>Grey Wool/Carpet/Stained Clay, Cauldron</td>
+</tr>
+<tr>
+<td>87</td>
+<td style="background-color: rgb(39,39,39);"></td>
+<td>39,39,39</td>
+<td>Grey Wool/Carpet/Stained Clay, Cauldron</td>
+</tr>
+<tr>
+<td>88</td>
+<td style="background-color: rgb(107,107,107);"></td>
+<td>107,107,107</td>
+<td>Light Grey Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>89</td>
+<td style="background-color: rgb(130,130,130);"></td>
+<td>130,130,130</td>
+<td>Light Grey Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>90</td>
+<td style="background-color: rgb(151,151,151);"></td>
+<td>151,151,151</td>
+<td>Light Grey Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>91</td>
+<td style="background-color: rgb(80,80,80);"></td>
+<td>80,80,80</td>
+<td>Light Grey Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>92</td>
+<td style="background-color: rgb(52,88,107);"></td>
+<td>52,88,107</td>
+<td>Cyan Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>93</td>
+<td style="background-color: rgb(64,108,130);"></td>
+<td>64,108,130</td>
+<td>Cyan Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>94</td>
+<td style="background-color: rgb(75,125,151);"></td>
+<td>75,125,151</td>
+<td>Cyan Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>95</td>
+<td style="background-color: rgb(39,66,80);"></td>
+<td>39,66,80</td>
+<td>Cyan Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>96</td>
+<td style="background-color: rgb(88,43,124);"></td>
+<td>88,43,124</td>
+<td>Purple Wool/Carpet/Stained Clay, Mycelium</td>
+</tr>
+<tr>
+<td>97</td>
+<td style="background-color: rgb(108,53,151);"></td>
+<td>108,53,151</td>
+<td>Purple Wool/Carpet/Stained Clay, Mycelium</td>
+</tr>
+<tr>
+<td>98</td>
+<td style="background-color: rgb(125,62,176);"></td>
+<td>125,62,176</td>
+<td>Purple Wool/Carpet/Stained Clay, Mycelium</td>
+</tr>
+<tr>
+<td>99</td>
+<td style="background-color: rgb(66,33,93);"></td>
+<td>66,33,93</td>
+<td>Purple Wool/Carpet/Stained Clay, Mycelium</td>
+</tr>
+<tr>
+<td>100</td>
+<td style="background-color: rgb(36,52,124);"></td>
+<td>36,52,124</td>
+<td>Blue Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>101</td>
+<td style="background-color: rgb(43,64,151);"></td>
+<td>43,64,151</td>
+<td>Blue Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>102</td>
+<td style="background-color: rgb(50,75,176);"></td>
+<td>50,75,176</td>
+<td>Blue Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>103</td>
+<td style="background-color: rgb(27,39,93);"></td>
+<td>27,39,93</td>
+<td>Blue Wool/Carpet/Stained Clay</td>
+</tr>
+<tr>
+<td>104</td>
+<td style="background-color: rgb(71,52,36);"></td>
+<td>71,52,36</td>
+<td>Brown Wool/Carpet/Stained Clay, Soul Sand, Dark Oak Items</td>
+</tr>
+<tr>
+<td>105</td>
+<td style="background-color: rgb(87,64,43);"></td>
+<td>87,64,43</td>
+<td>Brown Wool/Carpet/Stained Clay, Soul Sand, Dark Oak Items</td>
+</tr>
+<tr>
+<td>106</td>
+<td style="background-color: rgb(101,75,50);"></td>
+<td>101,75,50</td>
+<td>Brown Wool/Carpet/Stained Clay, Soul Sand, Dark Oak Items</td>
+</tr>
+<tr>
+<td>107</td>
+<td style="background-color: rgb(53,39,27);"></td>
+<td>53,39,27</td>
+<td>Brown Wool/Carpet/Stained Clay, Soul Sand, Dark Oak Items</td>
+</tr>
+<tr>
+<td>108</td>
+<td style="background-color: rgb(71,88,36);"></td>
+<td>71,88,36</td>
+<td>Green Wool/Carpet/Stained Clay, End Portal Frame</td>
+</tr>
+<tr>
+<td>109</td>
+<td style="background-color: rgb(87,108,43);"></td>
+<td>87,108,43</td>
+<td>Green Wool/Carpet/Stained Clay, End Portal Frame</td>
+</tr>
+<tr>
+<td>110</td>
+<td style="background-color: rgb(101,125,50);"></td>
+<td>101,125,50</td>
+<td>Green Wool/Carpet/Stained Clay, End Portal Frame</td>
+</tr>
+<tr>
+<td>111</td>
+<td style="background-color: rgb(53,66,27);"></td>
+<td>53,66,27</td>
+<td>Green Wool/Carpet/Stained Clay, End Portal Frame</td>
+</tr>
+<tr>
+<td>112</td>
+<td style="background-color: rgb(107,36,36);"></td>
+<td>107,36,36</td>
+<td>Red Wool/Carpet/Stained Clay, Huge Red Mushroom, Brick Items</td>
+</tr>
+<tr>
+<td>113</td>
+<td style="background-color: rgb(130,43,43);"></td>
+<td>130,43,43</td>
+<td>Red Wool/Carpet/Stained Clay, Huge Red Mushroom, Brick Items</td>
+</tr>
+<tr>
+<td>114</td>
+<td style="background-color: rgb(151,50,50);"></td>
+<td>151,50,50</td>
+<td>Red Wool/Carpet/Stained Clay, Huge Red Mushroom, Brick Items</td>
+</tr>
+<tr>
+<td>115</td>
+<td style="background-color: rgb(80,27,27);"></td>
+<td>80,27,27</td>
+<td>Red Wool/Carpet/Stained Clay, Huge Red Mushroom, Brick Items</td>
+</tr>
+<tr>
+<td>116</td>
+<td style="background-color: rgb(17,17,17);"></td>
+<td>17,17,17</td>
+<td>Black Wool/Carpet/Stained Clay, Dragon Egg, Block of Coal</td>
+</tr>
+<tr>
+<td>117</td>
+<td style="background-color: rgb(21,21,21);"></td>
+<td>21,21,21</td>
+<td>Black Wool/Carpet/Stained Clay, Dragon Egg, Block of Coal</td>
+</tr>
+<tr>
+<td>118</td>
+<td style="background-color: rgb(25,25,25);"></td>
+<td>25,25,25</td>
+<td>Black Wool/Carpet/Stained Clay, Dragon Egg, Block of Coal</td>
+</tr>
+<tr>
+<td>119</td>
+<td style="background-color: rgb(13,13,13);"></td>
+<td>13,13,13</td>
+<td>Black Wool/Carpet/Stained Clay, Dragon Egg, Block of Coal</td>
+</tr>
+<tr>
+<td>120</td>
+<td style="background-color: rgb(174,166,53);"></td>
+<td>174,166,53</td>
+<td>Block of Gold, Hay Bale, Weighted Pressure Plate (Light)</td>
+</tr>
+<tr>
+<td>121</td>
+<td style="background-color: rgb(212,203,65);"></td>
+<td>212,203,65</td>
+<td>Block of Gold, Hay Bale, Weighted Pressure Plate (Light)</td>
+</tr>
+<tr>
+<td>122</td>
+<td style="background-color: rgb(247,235,76);"></td>
+<td>247,235,76</td>
+<td>Block of Gold, Hay Bale, Weighted Pressure Plate (Light)</td>
+</tr>
+<tr>
+<td>123</td>
+<td style="background-color: rgb(130,125,39);"></td>
+<td>130,125,39</td>
+<td>Block of Gold, Hay Bale, Weighted Pressure Plate (Light)</td>
+</tr>
+<tr>
+<td>124</td>
+<td style="background-color: rgb(63,152,148);"></td>
+<td>63,152,148</td>
+<td>Block of Diamond, Prismarine, Prismarine Bricks, Dark Prismarine, Beacon</td>
+</tr>
+<tr>
+<td>125</td>
+<td style="background-color: rgb(78,186,181);"></td>
+<td>78,186,181</td>
+<td>Block of Diamond, Prismarine, Prismarine Bricks, Dark Prismarine, Beacon</td>
+</tr>
+<tr>
+<td>126</td>
+<td style="background-color: rgb(91,216,210);"></td>
+<td>91,216,210</td>
+<td>Block of Diamond, Prismarine, Prismarine Bricks, Dark Prismarine, Beacon</td>
+</tr>
+<tr>
+<td>127</td>
+<td style="background-color: rgb(47,114,111);"></td>
+<td>47,114,111</td>
+<td>Block of Diamond, Prismarine, Prismarine Bricks, Dark Prismarine, Beacon</td>
+</tr>
+<tr>
+<td>128</td>
+<td style="background-color: rgb(51,89,178);"></td>
+<td>51,89,178</td>
+<td>Lapis Lazuli Block</td>
+</tr>
+<tr>
+<td>129</td>
+<td style="background-color: rgb(62,109,217);"></td>
+<td>62,109,217</td>
+<td>Lapis Lazuli Block</td>
+</tr>
+<tr>
+<td>130</td>
+<td style="background-color: rgb(73,129,252);"></td>
+<td>73,129,252</td>
+<td>Lapis Lazuli Block</td>
+</tr>
+<tr>
+<td>131</td>
+<td style="background-color: rgb(39,66,133);"></td>
+<td>39,66,133</td>
+<td>Lapis Lazuli Block</td>
+</tr>
+<tr>
+<td>132</td>
+<td style="background-color: rgb(0,151,39);"></td>
+<td>0,151,39</td>
+<td>Block of Emerald</td>
+</tr>
+<tr>
+<td>133</td>
+<td style="background-color: rgb(0,185,49);"></td>
+<td>0,185,49</td>
+<td>Block of Emerald</td>
+</tr>
+<tr>
+<td>134</td>
+<td style="background-color: rgb(0,214,57);"></td>
+<td>0,214,57</td>
+<td>Block of Emerald</td>
+</tr>
+<tr>
+<td>135</td>
+<td style="background-color: rgb(0,113,30);"></td>
+<td>0,113,30</td>
+<td>Block of Emerald</td>
+</tr>
+<tr>
+<td>136</td>
+<td style="background-color: rgb(90,59,34);"></td>
+<td>90,59,34</td>
+<td>Obsidian, Enchantment Table, End Portal (portal)</td>
+</tr>
+<tr>
+<td>137</td>
+<td style="background-color: rgb(110,73,41);"></td>
+<td>110,73,41</td>
+<td>Obsidian, Enchantment Table, End Portal (portal)</td>
+</tr>
+<tr>
+<td>138</td>
+<td style="background-color: rgb(127,85,48);"></td>
+<td>127,85,48</td>
+<td>Obsidian, Enchantment Table, End Portal (portal)</td>
+</tr>
+<tr>
+<td>139</td>
+<td style="background-color: rgb(67,44,25);"></td>
+<td>67,44,25</td>
+<td>Obsidian, Enchantment Table, End Portal (portal)</td>
+</tr>
+<tr>
+<td>140</td>
+<td style="background-color: rgb(78,1,0);"></td>
+<td>78,1,0</td>
+<td>Netherrack, Quartz Ore, Nether Wart, Nether Brick Items</td>
+</tr>
+<tr>
+<td>141</td>
+<td style="background-color: rgb(95,1,0);"></td>
+<td>95,1,0</td>
+<td>Netherrack, Quartz Ore, Nether Wart, Nether Brick Items</td>
+</tr>
+<tr>
+<td>142</td>
+<td style="background-color: rgb(111,2,0);"></td>
+<td>111,2,0</td>
+<td>Netherrack, Quartz Ore, Nether Wart, Nether Brick Items</td>
+</tr>
+<tr>
+<td>143</td>
+<td style="background-color: rgb(58,1,0);"></td>
+<td>58,1,0</td>
+<td>Netherrack, Quartz Ore, Nether Wart, Nether Brick Items</td>
+</tr>
+</table>
+
+</body>
+</html>

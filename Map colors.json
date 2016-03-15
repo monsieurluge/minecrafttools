@@ -1,0 +1,19 @@
+# Blocks are colored according to their material.
+# Each material has a base color which is multiplied by 180, 220 or 255, and then divided by 255 to make the map color.
+# Each base color below is associated with four map colors - to get the first map color ID for a base color, multiply the base color ID by 4.
+
+{
+    "6":{
+        "description":"grass",
+        "red":125,
+        "green":176,
+        "blue":55
+    },
+    "10":{
+        "description":"sand, gravel",
+        "red":244,
+        "green":230,
+        "blue":161
+    },
+
+}
