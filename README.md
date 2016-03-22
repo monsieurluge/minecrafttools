@@ -1,7 +1,9 @@
-# A Minecraft cartographer, written in Python
+A Minecraft Cartographer, written in Python
+===========================================
 
 ... first try
 
-# Requirements
+Requirements
+------------
 
  - PNG library, found at https://github.com/drj11/pypng

@@ -1,6 +1,6 @@
 # coding: utf8
 
-from server import Server
+from utils.server import Server
 
 import json
 import os
