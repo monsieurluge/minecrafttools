@@ -20,9 +20,8 @@ class Server:
         self.world      = World(os.path.join(minecraftDirectory, self.properties.valueOf('level-name')))
 
     # --------------------------------------------------------------------------
-    # Generate the cartography for the loaded world, depending on the ingame crafted maps
-    #
-    # @param string outputDirectory
+    # TODO : method definition
     # --------------------------------------------------------------------------
-    def generateCartography(self, outputDirectory):
-        self.world.generateCartography(outputDirectory)
+    def printWhitelist(self):
+        for player in self.whitelist.playersSortedByName():
+            print player.id + ' /// ' + player.name

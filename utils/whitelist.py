@@ -3,6 +3,7 @@
 from player import Player
 
 import json
+import operator
 import sys
 
 # ------------------------------------------------------------------------------
@@ -37,5 +38,11 @@ class Whitelist:
     # --------------------------------------------------------------------------
     # TODO : method definition
     # --------------------------------------------------------------------------
-    def removePlayer(semf, playerName):
+    def removePlayer(self, playerName):
         pass
+
+    # --------------------------------------------------------------------------
+    # TODO : method definition
+    # --------------------------------------------------------------------------
+    def playersSortedByName(self):
+        return sorted(self.players, key = lambda player: player.name)

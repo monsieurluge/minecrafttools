@@ -26,8 +26,9 @@ def main(arguments):
     except IOError as error:
         if error.errno == 2:
             # File not found
-            print 'Le fichier de configuration n\'a pas été trouvé. Création automatique.'
+            print 'Le fichier de configuration n\'a pas été trouvé. Création automatique du fichier.'
             createDefaultConfigFile(minecraftDirectory, outputDirectory)
+            print 'Veuillez relancer le script.'
         elif error.errno == 13:
             # Permission denied
             print 'Le fichier de configuration ne peut pas être lu : ' + error.strerror
@@ -55,7 +56,7 @@ def main(arguments):
     server = Server(minecraftDirectory)
 
     # And generate the cartography
-    # server.generateCartography(outputDirectory)
+    server.world.generateCartography(outputDirectory)
 
 # ------------------------------------------------------------------------------
 # Create the default config file
