@@ -42,9 +42,10 @@ class World:
                 continue
 
             mapFile = nbt.NBTFile(fileName, 'rb')
+            result  = re.search('(map_\d+).dat', fileName);
 
             map = Map(
-                fileName, # TODO : virer le chemin du fichier
+                result.group(1),
                 int(str(mapFile.get('data').get('scale'))),
                 int(str(mapFile.get('data').get('dimension'))),
                 int(str(mapFile.get('data').get('width'))),
