@@ -9,35 +9,33 @@ import re
 import struct
 import md5
 
-# ------------------------------------------------------------------------------
-# TODO : class definition
-# ------------------------------------------------------------------------------
 class World:
+
+    """ TODO class definition """
 
     def __init__(self, worldPath):
         # Default properties
-        self.folder      = worldPath
-        self.players     = None
-        self.maps        = []
+        self.__folder   = worldPath
+        self.__players  = {}
+        self.__maps     = []
 
         # Cartography default properties
-        self.cartographyHorizontalSize   = 0
-        self.cartographyVerticalSize     = 0
-        self.cartographyWestCoordinates  = 0
-        self.cartographyNorthCoordinates = 0
+        self.__cartographyHorizontalSize    = 0
+        self.__cartographyVerticalSize      = 0
+        self.__cartographyWestCoordinates   = 0
+        self.__cartographyNorthCoordinates  = 0
 
         # The world folder must exist
-        if not os.path.exists(self.folder):
-            print 'Le monde "' + self.folder + '" n\'existe pas.'
+        if not os.path.exists(self.__folder):
+            print 'Le monde "' + self.__folder + '" n\'existe pas.'
             sys.exit(2)
 
-        self.loadMaps()
+        self.__loadMaps()
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
-    def loadMaps(self):
-        for fileName in glob.glob(os.path.join(self.folder, 'data', '*.dat')):
+
+    def __loadMaps(self):
+        """ Load all the maps (which were crafted in game) """
+        for fileName in glob.glob(os.path.join(self.__folder, 'data', '*.dat')):
             if not 'map_' in fileName:
                 continue
 
@@ -55,26 +53,34 @@ class World:
                 mapFile.get('data').get('colors')
             )
 
-            self.maps.append(map)
+            self.__maps.append(map)
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
     def generateCartography(self, outputDirectory):
+        """ Generate the cartography picture file
+
+        Params:
+            outputDirectory (string): The directory where create the picture
+
+        Returns:
+            World
+
+        Raises:
+            IOError: If the picture file cannot be created for any reason
+        """
         # todo : load the colors ("Map colors.json")
 
-        # sorted(self.players, key = lambda player: player.name)
-        for map in sorted(self.maps, key = lambda map: map.scale):
+        for map in sorted(self.__maps, key = lambda map: map.scale):
             print '[' + str(map.scale) + '] ' + map.name
             # todo : create the picture
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
-    def getPlayers(self):
-        if self.players != None:
-            return self.players
+    def players(self):
+        """ Return the players list
 
-        for fileName in glob.glob(os.path.join(self.folder, 'playerdata', '*.dat')):
-            nbtFile = nbt.NBTFile(fileName, rb)
-            print nbtFile.name
+        Returns:
+            dictionnary
+        """
+        return self.__players
+
+        # for fileName in glob.glob(os.path.join(self.__folder, 'playerdata', '*.dat')):
+        #     nbtFile = nbt.NBTFile(fileName, rb)
+        #     print nbtFile.name

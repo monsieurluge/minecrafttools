@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
 
-# ------------------------------------------------------------------------------
-# TODO : class definition
-# ------------------------------------------------------------------------------
 class Property:
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
+    """ TODO class definition """
+
     def __init__(self, name, value):
-        self.name = name
-        self.value = value
+        self.__name = name
+        self.__value = value
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
     def name(self):
-        return self.name
+        """ Return the name of the property
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
+        Returns:
+            string
+        """
+        return self.__name
+
     def value(self):
-        return value
+        """ Returns the value of the property
+
+        Returns:
+            string
+        """
+        return self.__value

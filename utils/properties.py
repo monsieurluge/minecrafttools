@@ -5,16 +5,12 @@ from property import Property
 import re
 import sys
 
-# ------------------------------------------------------------------------------
-# TODO : class definition
-# ------------------------------------------------------------------------------
 class Properties:
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
+    """ TODO class definition """
+
     def __init__(self, propertiesPath):
-        self.properties = []
+        self.__properties = []
 
         try:
             with open(propertiesPath) as propertiesFile:
@@ -36,13 +32,18 @@ class Properties:
             if not matches:
                 continue
             # Then, save the property & its value
-            self.properties.append(Property(matches.group(1), matches.group(2)))
+            self.__properties.append(Property(matches.group(1), matches.group(2)))
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
     def valueOf(self, name):
-        for property in self.properties:
+        """ Returns the value of the named property
+
+        Params:
+            name (string): The name of the property
+
+        Returns:
+            string: The value of the property, empty string if the property doesn't exist
+        """
+        for property in self.__properties:
             if property.name == name:
                 return property.value
         return ''

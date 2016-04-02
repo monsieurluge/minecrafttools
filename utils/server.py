@@ -6,22 +6,24 @@ from world      import World
 
 import os
 
-# ------------------------------------------------------------------------------
-# TODO : class definition
-# ------------------------------------------------------------------------------
 class Server:
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
-    def __init__(self, minecraftDirectory):
-        self.properties = Properties(os.path.join(minecraftDirectory, 'server.properties'))
-        self.whitelist  = Whitelist(os.path.join(minecraftDirectory, 'whitelist.json'))
-        self.world      = World(os.path.join(minecraftDirectory, self.properties.valueOf('level-name')))
+    """ TODO class definition """
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
+    def __init__(self, minecraftDirectory):
+        self.__properties = Properties(os.path.join(minecraftDirectory, 'server.properties'))
+        self.__whitelist  = Whitelist(os.path.join(minecraftDirectory, 'whitelist.json'))
+        self.__world      = World(os.path.join(minecraftDirectory, self.__properties.valueOf('level-name')))
+
     def printWhitelist(self):
-        for player in self.whitelist.playersSortedByName():
+        """ Display the players list """
+        for player in self.__whitelist.playersSortedByName():
             print player.id + ' /// ' + player.name
+
+    def world(self):
+        """ Return the world
+
+        Returns:
+            World
+        """
+        return self.__world

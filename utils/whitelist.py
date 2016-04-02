@@ -6,16 +6,13 @@ import json
 import operator
 import sys
 
-# ------------------------------------------------------------------------------
-# TODO : class definition
-# ------------------------------------------------------------------------------
 class Whitelist:
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
+    """ TODO class definition """
+
     def __init__(self, whitelistPath):
-        self.players = []
+        self.__players          = {}
+        self.__whitelistPath    = whitelistPath
 
         try:
             with open(whitelistPath) as whitelistFile:
@@ -29,20 +26,41 @@ class Whitelist:
                 Player(entry['uuid'], entry['name'])
             )
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
     def addPlayer(self, player):
-        self.players.append(player)
+        """ Add a player to the whitelist
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
-    def removePlayer(self, playerName):
-        pass
+        Args:
+            player (Player): The player to add
 
-    # --------------------------------------------------------------------------
-    # TODO : method definition
-    # --------------------------------------------------------------------------
+        Returns:
+            Whitelist
+        """
+        self.__players[player.name()] = player
+        return self
+
     def playersSortedByName(self):
-        return sorted(self.players, key = lambda player: player.name)
+        """ Sort the players in the whitelist by name """
+        return sorted(self.__players, key = lambda player: player.name)
+
+    def removePlayer(self, playerName):
+        """ Remove a player from the whitelist
+
+        Args:
+            playerName (string): The name of the player to remove
+
+        Returns:
+            Whitelist
+        """
+        del self.__players[playerName]
+        return self
+
+    def save(self):
+        """ Save the whitelist
+
+        Returns:
+            Whitelist
+
+        Raises:
+            IOError: If the file cannot be written for any reason
+        """
+        pass
