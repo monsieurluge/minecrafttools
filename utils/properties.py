@@ -44,6 +44,6 @@ class Properties:
             string: The value of the property, empty string if the property doesn't exist
         """
         for property in self.__properties:
-            if property.name == name:
-                return property.value
+            if property.name() == name:
+                return property.value()
         return ''

@@ -4,8 +4,14 @@ class Player:
 
     """ TODO class definition """
 
-    def __init__(self, id, name, whitelisted = True, banned = False):
+    def __init__(self, id, name):
         self.__name           = name
         self.__id             = id
-        self.__whitelisted    = whitelisted
-        self.__banned         = banned
+
+    def id(self):
+        """ TODO method definition """
+        return self.__id
+
+    def name(self):
+        """ TODO method definition """
+        return self.__name

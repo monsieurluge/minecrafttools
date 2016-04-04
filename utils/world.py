@@ -32,7 +32,6 @@ class World:
 
         self.__loadMaps()
 
-
     def __loadMaps(self):
         """ Load all the maps (which were crafted in game) """
         for fileName in glob.glob(os.path.join(self.__folder, 'data', '*.dat')):
@@ -55,6 +54,11 @@ class World:
 
             self.__maps.append(map)
 
+    def __mapColors(self):
+        """ TODO method definition """
+        # TODO : load the map colors
+        return {}
+
     def generateCartography(self, outputDirectory):
         """ Generate the cartography picture file
 
@@ -67,11 +71,10 @@ class World:
         Raises:
             IOError: If the picture file cannot be created for any reason
         """
-        # todo : load the colors ("Map colors.json")
+        mapColors = self.__mapColors()
 
-        for map in sorted(self.__maps, key = lambda map: map.scale):
-            print '[' + str(map.scale) + '] ' + map.name
-            # todo : create the picture
+        for map in sorted(self.__maps, key = lambda map: map.scale()):
+            map.save(outputDirectory, mapColors)
 
     def players(self):
         """ Return the players list
