@@ -7,7 +7,6 @@ import glob
 import os
 import re
 import struct
-import md5
 
 class World:
 
@@ -41,7 +40,7 @@ class World:
             mapFile = nbt.NBTFile(fileName, 'rb')
             result  = re.search('(map_\d+).dat', fileName);
 
-            map = Map(
+            self.__maps.append(Map(
                 result.group(1),
                 int(str(mapFile.get('data').get('scale'))),
                 int(str(mapFile.get('data').get('dimension'))),
@@ -50,15 +49,7 @@ class World:
                 int(str(mapFile.get('data').get('xCenter'))),
                 int(str(mapFile.get('data').get('zCenter'))),
                 mapFile.get('data').get('colors')
-            )
-
-            self.__maps.append(map)
-
-    def __mapColors(self):
-        """ TODO method definition """
-        # TODO : load the map colors
-        return {}
-
+            ))
     def generateCartography(self, outputDirectory):
         """ Generate the cartography picture file
 
@@ -71,10 +62,9 @@ class World:
         Raises:
             IOError: If the picture file cannot be created for any reason
         """
-        mapColors = self.__mapColors()
 
         for map in sorted(self.__maps, key = lambda map: map.scale()):
-            map.save(outputDirectory, mapColors)
+            map.save(outputDirectory)
 
     def players(self):
         """ Return the players list

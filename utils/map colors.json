@@ -1,0 +1,256 @@
+{
+    "colors":[
+        {
+            "id":"default",
+            "description":"default color",
+            "red":214,
+            "green":190,
+            "blue":150
+        },
+        {
+            "id":6,
+            "description":"grass",
+            "red":125,
+            "green":176,
+            "blue":55
+        },
+        {
+            "id":10,
+            "description":"sand, gravel",
+            "red":244,
+            "green":230,
+            "blue":161
+        },
+        {
+            "id":14,
+            "description":"other",
+            "red":197,
+            "green":197,
+            "blue":197
+        },
+        {
+            "id":18,
+            "description":"lava, TNT",
+            "red":252,
+            "green":0,
+            "blue":0
+        },
+        {
+            "id":22,
+            "description":"ice, packed ice",
+            "red":158,
+            "green":158,
+            "blue":252
+        },
+        {
+            "id":26,
+            "description":"metal",
+            "red":165,
+            "green":165,
+            "blue":165
+        },
+        {
+            "id":30,
+            "description":"plants",
+            "red":0,
+            "green":123,
+            "blue":0
+        },
+        {
+            "id":34,
+            "description":"white wool/carpet/stained clay",
+            "red":252,
+            "green":252,
+            "blue":252
+        },
+        {
+            "id":38,
+            "description":"clay",
+            "red":162,
+            "green":162,
+            "blue":162
+        },
+        {
+            "id":42,
+            "description":"dirt",
+            "red":149,
+            "green":108,
+            "blue":76
+        },
+        {
+            "id":46,
+            "description":"stone, cobblestone, ore",
+            "red":111,
+            "green":111,
+            "blue":111
+        },
+        {
+            "id":50,
+            "description":"water",
+            "red":63,
+            "green":63,
+            "blue":252
+        },
+        {
+            "id":54,
+            "description":"log, tree, wood",
+            "red":141,
+            "green":118,
+            "blue":71
+        },
+        {
+            "id":58,
+            "description":"diorite",
+            "red":252,
+            "green":249,
+            "blue":242
+        },
+        {
+            "id":62,
+            "description":"orange wool/carpet/stained clay, pumpkin, hardened clay, acacia items",
+            "red":213,
+            "green":125,
+            "blue":50
+        },
+        {
+            "id":66,
+            "description":"magenta wool/carpet/stained clay",
+            "red":176,
+            "green":75,
+            "blue":213
+        },
+        {
+            "id":70,
+            "description":"light blue wool/carpet/stained clay",
+            "red":101,
+            "green":151,
+            "blue":213
+        },
+        {
+            "id":74,
+            "description":"yellow wool/carpet/stained clay",
+            "red":226,
+            "green":226,
+            "blue":50
+        },
+        {
+            "id":78,
+            "description":"lime wool/carpet/stained clay, melon",
+            "red":125,
+            "green":202,
+            "blue":25
+        },
+        {
+            "id":82,
+            "description":"pink wool/carpet/stained clay",
+            "red":239,
+            "green":125,
+            "blue":163
+        },
+        {
+            "id":86,
+            "description":"grey wool/carpet/stained clay, cauldron",
+            "red":75,
+            "green":75,
+            "blue":75
+        },
+        {
+            "id":90,
+            "description":"light grey wool/carpet/stained clay",
+            "red":151,
+            "green":151,
+            "blue":151
+        },
+        {
+            "id":94,
+            "description":"cyan wool/carpet/stained clay",
+            "red":75,
+            "green":125,
+            "blue":151
+        },
+        {
+            "id":98,
+            "description":"purple wool/carpet/stained clay, mycelium",
+            "red":125,
+            "green":62,
+            "blue":176
+        },
+        {
+            "id":102,
+            "description":"blue wool/carpet/stained clay",
+            "red":50,
+            "green":75,
+            "blue":176
+        },
+        {
+            "id":106,
+            "description":"brown wool/carpet/stained clay, soul sand, dark oak items",
+            "red":101,
+            "green":75,
+            "blue":50
+        },
+        {
+            "id":110,
+            "description":"green wool/carpet/stained clay, end portal, frame",
+            "red":101,
+            "green":125,
+            "blue":50
+        },
+        {
+            "id":114,
+            "description":"red wool/carpet/stained clay, huge red mushroom, brick items",
+            "red":151,
+            "green":50,
+            "blue":50
+        },
+        {
+            "id":118,
+            "description":"black wool/carpet/stained clay, dragon egg, block of coal",
+            "red":25,
+            "green":25,
+            "blue":25
+        },
+        {
+            "id":122,
+            "description":"block of gold, hay bale, weighted pressure plate (light)",
+            "red":247,
+            "green":235,
+            "blue":76
+        },
+        {
+            "id":126,
+            "description":"block of diamond, prismarine, prismarine bricks, dark prismarine, beacon",
+            "red":78,
+            "green":186,
+            "blue":181
+        },
+        {
+            "id":130,
+            "description":"lapis lazuli block",
+            "red":73,
+            "green":129,
+            "blue":252
+        },
+        {
+            "id":134,
+            "description":"block of emerald",
+            "red":0,
+            "green":214,
+            "blue":57
+        },
+        {
+            "id":138,
+            "description":"obsidian, enchantment table, end portal (portal)",
+            "red":127,
+            "green":85,
+            "blue":48
+        },
+        {
+            "id":142,
+            "description":"netherrack, quartz ore, nether wart, nether brick items",
+            "red":111,
+            "green":2,
+            "blue":0
+        }
+    ]
+}
