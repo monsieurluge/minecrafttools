@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from properties import Properties
-from whitelist  import Whitelist
-from world      import World
+from utils.properties import Properties
+from utils.whitelist  import Whitelist
+from utils.world      import World
 
 import os
 
@@ -18,7 +18,7 @@ class Server:
     def printWhitelist(self):
         """ Display the players list """
         for player in self.__whitelist.playersSortedByName():
-            print player.id + ' /// ' + player.name
+            print(player.id + ' /// ' + player.name)
 
     def world(self):
         """ Return the world

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from colorsreference import ColorsReference
+from utils.colorsreference import ColorsReference
+from PIL                   import Image
 
 import itertools
 import os
-import png
 
 class Map:
 
@@ -37,23 +37,23 @@ class Map:
         Raises:
             IOError: If the file cannot be written for any reason
         """
-        colorsList = []
+        colorsList = self.__height * [None]
         for height in range(self.__height):
-            colorsList.append([])
+            colorsList[height] = (self.__width * 3) * [None]
 
             for width in range(self.__width):
                 id    = self.__colors[self.__width * height + width]
-                color = self.__colorsReference.idToRgb(id)
+                color = list(self.__colorsReference.idToRgb(id))
 
-                colorsList[height].append(color[0])
-                colorsList[height].append(color[1])
-                colorsList[height].append(color[2])
+                colorsList[height][width] = color[0]
+                colorsList[height][width + 1] = color[1]
+                colorsList[height][width + 2] = color[2]
             colorsList[height] = tuple(colorsList[height])
 
-        pictureFile = open(os.path.join(directory, self.__name + '.png'), 'wb')
-        pngWriter   = png.Writer(self.__width, self.__height)
-
-        pngWriter.write(pictureFile, colorsList)
+        # pictureFile = open(os.path.join(directory, self.__name + '.png'), 'wb')
+        # pngWriter   = png.Writer(self.__width, self.__height)
+        #
+        # pngWriter.write(pictureFile, colorsList)
 
         return self
 

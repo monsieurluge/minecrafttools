@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from nbt import nbt
-from map import Map
+from nbt       import nbt
+from utils.map import Map
 
 import glob
 import os
@@ -26,7 +26,7 @@ class World:
 
         # The world folder must exist
         if not os.path.exists(self.__folder):
-            print 'Le monde "' + self.__folder + '" n\'existe pas.'
+            print('Le monde "' + self.__folder + '" n\'existe pas.')
             sys.exit(2)
 
         self.__loadMaps()

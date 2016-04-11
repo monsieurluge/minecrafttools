@@ -6,7 +6,6 @@ import json
 import os
 import sys
 import getopt
-import user
 
 # ------------------------------------------------------------------------------
 # Main script
@@ -26,19 +25,19 @@ def main(arguments):
     except IOError as error:
         if error.errno == 2:
             # File not found
-            print 'Le fichier de configuration n\'a pas été trouvé. Création automatique du fichier.'
+            print('Le fichier de configuration n\'a pas été trouvé. Création automatique du fichier.')
             createDefaultConfigFile(minecraftDirectory, outputDirectory)
-            print 'Veuillez relancer le script.'
+            print('Veuillez relancer le script.')
         elif error.errno == 13:
             # Permission denied
-            print 'Le fichier de configuration ne peut pas être lu : ' + error.strerror
+            print('Le fichier de configuration ne peut pas être lu : ' + error.strerror)
             sys.exit(2)
 
     # Check the launch parameters
     try:
         opts, args = getopt.getopt(arguments, 'hdo:', ['minecraftdirectory=', 'outputdirectory'])
     except getopt.GetoptError as errorMessage:
-        print str(errorMessage)
+        print(str(errorMessage))
         usage()
         sys.exit(2)
 
@@ -77,7 +76,7 @@ def createDefaultConfigFile(minecraftDirectory, outputDirectory):
 # Returns the script usage
 # ------------------------------------------------------------------------------
 def usage():
-    print 'Options : [-d|--minecraftdirectory] [-o|--outputdirectory]'
+    print('Options : [-d|--minecraftdirectory] [-o|--outputdirectory]')
 
 # ------------------------------------------------------------------------------
 # Launch the script

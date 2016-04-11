@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from mapcolor import MapColor
+from utils.mapcolor import MapColor
 
 import json
 import os
@@ -41,7 +41,7 @@ class ColorsReference:
         baseId   = int(id / 4) * 4 + 2
         multiply = [180, 220, 255, 135]
 
-        if not self.__colors.has_key(baseId):
+        if not baseId in self.__colors:
             return self.__colors['default'].rgb()
 
         rgb = map(lambda color: color * multiply[id % 4] / 255, self.__colors[baseId].rgb())

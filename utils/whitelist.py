@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from player import Player
+from utils.player import Player
 
 import json
 import operator
@@ -18,7 +18,7 @@ class Whitelist:
             with open(whitelistPath) as whitelistFile:
                 whitelist = json.load(whitelistFile)
         except IOError as error:
-            print 'Erreur lors de l\'accès à la whitelist : ' + error.errno
+            print('Erreur lors de l\'accès à la whitelist : ' + error.errno)
             sys.exit(2)
 
         for entry in whitelist:
