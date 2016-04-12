@@ -38,12 +38,15 @@ class ColorsReference:
         Returns:
             tuple: RGB values. ex: (126, 2, 74)
         """
+        if id == 'default':
+            return self.__colors['default'].rgb()
+
         baseId   = int(id / 4) * 4 + 2
         multiply = [180, 220, 255, 135]
 
         if not baseId in self.__colors:
             return self.__colors['default'].rgb()
 
-        rgb = map(lambda color: color * multiply[id % 4] / 255, self.__colors[baseId].rgb())
+        rgb = map(lambda color: int(color * multiply[id % 4] / 255), self.__colors[baseId].rgb())
 
-        return rgb
+        return tuple(rgb)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from utils.colorsreference import ColorsReference
-from PIL                   import Image
+from PIL                   import Image, ImageDraw
 
 import itertools
 import os
@@ -37,23 +37,21 @@ class Map:
         Raises:
             IOError: If the file cannot be written for any reason
         """
-        colorsList = self.__height * [None]
+        scale   = self.__scale + 1
+        picture = Image.new('RGB', (self.__width * scale, self.__height * scale), self.__colorsReference.idToRgb('default'))
+        draw    = ImageDraw.Draw(picture)
+
         for height in range(self.__height):
-            colorsList[height] = (self.__width * 3) * [None]
-
             for width in range(self.__width):
-                id    = self.__colors[self.__width * height + width]
-                color = list(self.__colorsReference.idToRgb(id))
+                x       = width * scale
+                y       = height * scale
+                xOffset = x + scale - 1
+                yOffset = y + scale - 1
+                colorId = self.__colors[self.__width * height + width]
 
-                colorsList[height][width] = color[0]
-                colorsList[height][width + 1] = color[1]
-                colorsList[height][width + 2] = color[2]
-            colorsList[height] = tuple(colorsList[height])
+                draw.rectangle([x, y, xOffset, yOffset], fill = self.__colorsReference.idToRgb(colorId))
 
-        # pictureFile = open(os.path.join(directory, self.__name + '.png'), 'wb')
-        # pngWriter   = png.Writer(self.__width, self.__height)
-        #
-        # pngWriter.write(pictureFile, colorsList)
+        picture.save(os.path.join(directory, self.__name + '.png'))
 
         return self
 
