@@ -12,6 +12,7 @@ import getopt
 # Returns usage and stops if wrong arguments were given
 # ------------------------------------------------------------------------------
 def main(arguments):
+    cartographyType     = 'multiple'
     minecraftDirectory  = '~/.minecraft'
     outputDirectory     = '~/.minecraft/cartography'
 
@@ -20,28 +21,30 @@ def main(arguments):
         with open(os.getcwd() + '/config.json') as configFile:
             # Get the config data
             configData          = json.load(configFile)
+            cartographyType     = configData['Cartography type']
             minecraftDirectory  = configData['Minecraft directory']
             outputDirectory     = configData['Output directory']
     except IOError as error:
         if error.errno == 2:
             # File not found
-            print('Le fichier de configuration n\'a pas été trouvé. Création automatique du fichier.')
-            createDefaultConfigFile(minecraftDirectory, outputDirectory)
-            print('Veuillez relancer le script.')
+            print('[WARNING] The default configuration file was not found.')
+            createDefaultConfigFile(minecraftDirectory, outputDirectory, cartographyType)
+            print('[INFO] This default configuration file is now generated ; Please restart this script')
+            sys.exit(1)
         elif error.errno == 13:
             # Permission denied
-            print('Le fichier de configuration ne peut pas être lu : ' + error.strerror)
+            print('[ERROR] Error when trying to read the configuration file : "' + error.strerror + '"')
             sys.exit(2)
 
     # Check the launch parameters
     try:
-        opts, args = getopt.getopt(arguments, 'hdo:', ['minecraftdirectory=', 'outputdirectory'])
+        opts, args = getopt.getopt(arguments, 'hdoc:', ['minecraftdirectory', 'outputdirectory', 'cartographytype'])
     except getopt.GetoptError as errorMessage:
         print(str(errorMessage))
         usage()
         sys.exit(2)
 
-    # Update the config, if necessary
+    # Get the command line arguments, and overwrite the config if necessary
     for opt, arg in opts:
         if opt in ("-h", "--help"):
             usage()
@@ -50,23 +53,26 @@ def main(arguments):
             minecraftDirectory = arg
         if opt in ('-o', '--outputdirectory'):
             outputDirectory = arg
+        if opt in ('-c', '--cartographytype'):
+            cartographyType = arg
 
     # Load the server
     server = Server(minecraftDirectory)
 
     # And generate the cartography
-    server.world().generateCartography(outputDirectory)
+    server.world().generateCartography(outputDirectory, cartographyType)
 
 # ------------------------------------------------------------------------------
-# Create the default config file
+# Creates the default config file
 # ------------------------------------------------------------------------------
-def createDefaultConfigFile(minecraftDirectory, outputDirectory):
+def createDefaultConfigFile(minecraftDirectory, outputDirectory, cartographyType):
     configFile = open(os.getcwd() + '/config.json', 'w')
 
     # Write the default config values
     configFile.write(
         '{"Minecraft directory" : "' + minecraftDirectory
             + '","Output directory" : "' + outputDirectory
+            + '","Cartography type" : "' + cartographyType
             + '"}')
 
     # Then close the file
@@ -76,7 +82,8 @@ def createDefaultConfigFile(minecraftDirectory, outputDirectory):
 # Returns the script usage
 # ------------------------------------------------------------------------------
 def usage():
-    print('Options : [-d|--minecraftdirectory] [-o|--outputdirectory]')
+    # TODO Better usage helper
+    print('Options : [-d|--minecraftdirectory] [-o|--outputdirectory] [-c|--cartographytype]')
 
 # ------------------------------------------------------------------------------
 # Launch the script

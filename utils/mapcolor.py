@@ -14,7 +14,7 @@ class MapColor:
         self.__blue        = int(blue)
 
     def rgb(self):
-        """ Return the RGB values in a tuple
+        """ Returns the RGB values in a tuple
 
         Returns:
             tuple: (red, green, blue)

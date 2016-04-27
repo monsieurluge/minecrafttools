@@ -7,8 +7,6 @@ import sys
 
 class Properties:
 
-    """ TODO class definition """
-
     def __init__(self, propertiesPath):
         self.__properties = []
 
@@ -18,11 +16,11 @@ class Properties:
         except IOError as error:
             if error.errno == 2:
                 # File not found
-                print('Le fichier de configuration du serveur n\'a pas été trouvé !')
+                print('[ERROR] The server\'s configuration file was not found : "' + propertiesPath + '"')
                 sys.exit(2)
             elif error.errno == 13:
                 # Permission denied
-                print('Le fichier de configuration du serveur ne peut pas être lu : ' + error.strerror)
+                print('[ERROR] The server\'s configuration file is not readable: "' + error.strerror + '"')
                 sys.exit(2)
 
         # Read and load the property file

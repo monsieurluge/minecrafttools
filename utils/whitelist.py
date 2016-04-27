@@ -8,8 +8,6 @@ import sys
 
 class Whitelist:
 
-    """ TODO class definition """
-
     def __init__(self, whitelistPath):
         self.__players          = {}
         self.__whitelistPath    = whitelistPath
@@ -18,7 +16,7 @@ class Whitelist:
             with open(whitelistPath) as whitelistFile:
                 whitelist = json.load(whitelistFile)
         except IOError as error:
-            print('Erreur lors de l\'accès à la whitelist : ' + error.errno)
+            print('[ERROR] Error when trying to parse the whitelist file : "' + error.errno + '"')
             sys.exit(2)
 
         for entry in whitelist:
@@ -27,7 +25,7 @@ class Whitelist:
             )
 
     def addPlayer(self, player):
-        """ Add a player to the whitelist
+        """ Adds a player to the whitelist
 
         Args:
             player (Player): The player to add
@@ -43,7 +41,7 @@ class Whitelist:
         return sorted(self.__players, key = lambda player: player.name)
 
     def removePlayer(self, playerName):
-        """ Remove a player from the whitelist
+        """ Removes a player from the whitelist
 
         Args:
             playerName (string): The name of the player to remove
@@ -55,7 +53,7 @@ class Whitelist:
         return self
 
     def save(self):
-        """ Save the whitelist
+        """ Saves the whitelist
 
         Returns:
             Whitelist
@@ -63,4 +61,4 @@ class Whitelist:
         Raises:
             IOError: If the file cannot be written for any reason
         """
-        pass
+        pass # TODO save()

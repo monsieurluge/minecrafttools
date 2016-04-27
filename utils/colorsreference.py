@@ -12,7 +12,7 @@ class ColorsReference:
         self.__loadColorsReference()
 
     def __loadColorsReference(self):
-        """ Load the colors reference from a json file """
+        """ Loads the colors reference from a json file """
         data = json.load(open(os.path.join(os.path.dirname(__file__), 'map colors.json')))
 
         for element in data['colors']:
@@ -29,7 +29,7 @@ class ColorsReference:
         #     raise ???
 
     def idToRgb(self, id):
-        """ Return a tuple with red, green and blue values
+        """ Returns a tuple with red, green and blue values
         If there is no color for the ID, it returns a default RGB combination
 
         Parameters:

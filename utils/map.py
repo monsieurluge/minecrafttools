@@ -8,11 +8,21 @@ import os
 
 class Map:
 
-    """ TODO class definition """
-
     __colorsReference = None
 
     def __init__(self, name, scale, dimension, width, height, xCenter, zCenter, colors):
+        """ Creates a Map object
+
+        Params:
+            name (string):          The Map name (ex: map_8)
+            scale (integer):        scale of the Map
+            dimension (integer):    dimension (nether = -1, surface = 0, end = ?)
+            width (integer):        number of color id in the width (default: 128)
+            height (integer):       number of color id in the height (default: 128)
+            xCenter (integer):      x coordinate of the top left corner of the Map
+            zCenter (integer):      z coordinate of the top left corner of the Map
+            colors (list):          TODO
+        """
         self.__name       = name
         self.__scale      = int(scale)
         self.__dimension  = int(dimension)
@@ -26,7 +36,7 @@ class Map:
             self.__colorsReference = ColorsReference()
 
     def save(self, directory):
-        """ Save the map to a picture file (.png)
+        """ Saves the map to a picture file (.png)
 
         Params:
             directory (string): directory where to save the file
@@ -37,26 +47,57 @@ class Map:
         Raises:
             IOError: If the file cannot be written for any reason
         """
-        scale   = self.__scale + 1
-        picture = Image.new('RGB', (self.__width * scale, self.__height * scale), self.__colorsReference.idToRgb('default'))
-        draw    = ImageDraw.Draw(picture)
+        scale       = self.__scale + 1
+        pictureSize = (self.__width * scale, self.__height * scale)
+        picture     = Image.new('RGB', pictureSize, self.__colorsReference.idToRgb('default'))
+        draw        = ImageDraw.Draw(picture)
 
         for height in range(self.__height):
             for width in range(self.__width):
                 x       = width * scale
                 y       = height * scale
-                xOffset = x + scale - 1
-                yOffset = y + scale - 1
                 colorId = self.__colors[self.__width * height + width]
+                color   = self.__colorsReference.idToRgb(colorId)
 
-                draw.rectangle([x, y, xOffset, yOffset], fill = self.__colorsReference.idToRgb(colorId))
+                draw.rectangle([x, y, x + scale - 1, y + scale - 1], fill = color)
 
         picture.save(os.path.join(directory, self.__name + '.png'))
 
         return self
 
+    def saveFragments(self, directory):
+        """ Explodes the Map into 128px*128px pictures
+
+        Params:
+            directory (string): The directory where to store the pictures
+
+        Returns:
+            Map
+
+        Raises:
+            IOError: If the file cannot be written for any reason
+        """
+        pass # TODO saveFragments()
+
+    def saveInto(self, directory, fileName, xOffset = 0, yOffset = 0):
+        """ Saves the Map into an existing picture
+
+        Params:
+            directory (string): The directory where to get the initial picture
+            fileName (string):  The name of the picture
+            xOffset (integer):  Starting horizontal position
+            yOffset (integer):  Starting vertical position
+
+        Returns:
+            Map
+
+        Raises:
+            IOError: If the file cannot be written for any reason
+        """
+        pass # TODO saveInto()
+
     def scale(self):
-        """ Return the map scale
+        """ Returns the map scale
 
         Returns:
             integer
