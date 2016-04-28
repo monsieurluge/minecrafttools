@@ -17,7 +17,7 @@ class Whitelist:
                 whitelist = json.load(whitelistFile)
         except IOError as error:
             print('[ERROR] Error when trying to parse the whitelist file : "' + error.errno + '"')
-            sys.exit(2)
+            sys.exit(1)
 
         for entry in whitelist:
             self.addPlayer(

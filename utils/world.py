@@ -7,6 +7,7 @@ import glob
 import os
 import re
 import struct
+import sys
 
 class World:
 
@@ -29,7 +30,7 @@ class World:
         # The world folder must exist
         if not os.path.exists(self.__folder):
             print('[ERROR] The world "' + self.__folder + '" doesn\'t exists.')
-            sys.exit(2)
+            sys.exit(1)
 
         self.__loadMaps()
 
@@ -48,7 +49,10 @@ class World:
             outputDirectory (string): The directory where to store the pictures
         """
         for map in sorted(self.__maps, key = lambda map: map.scale()):
-            map.save(outputDirectory)
+            try:
+                map.save(outputDirectory)
+            except IOError as exception:
+                print('[WARNING] Failure when trying to generate the "' + map.name() + '" map : ' + format(exception))
 
     def __generateUnique(self, outputDirectory):
         """ Generates an unique cartography picture

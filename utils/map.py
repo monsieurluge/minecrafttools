@@ -5,6 +5,7 @@ from PIL                   import Image, ImageDraw
 
 import itertools
 import os
+import sys
 
 class Map:
 
@@ -33,7 +34,19 @@ class Map:
         self.__colors     = colors
 
         if self.__colorsReference is None:
-            self.__colorsReference = ColorsReference()
+            try:
+                self.__colorsReference = ColorsReference()
+            except IOError as exception:
+                print('[ERROR] Failure when trying to load the colors reference: ' + format(exception))
+                sys.exit(1)
+
+    def name(self):
+        """ Returns the Map name
+
+        Returns:
+            string
+        """
+        return self.__name
 
     def save(self, directory):
         """ Saves the map to a picture file (.png)

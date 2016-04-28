@@ -12,8 +12,13 @@ class ColorsReference:
         self.__loadColorsReference()
 
     def __loadColorsReference(self):
-        """ Loads the colors reference from a json file """
-        data = json.load(open(os.path.join(os.path.dirname(__file__), 'map colors.json')))
+        """ Loads the colors reference from a json file
+
+        Raises:
+            IOError
+        """
+        referenceFile = os.path.join(os.path.dirname(__file__), 'map colors.json')
+        data          = json.load(open(referenceFile))
 
         for element in data['colors']:
             self.__colors[element['id']] = MapColor(
@@ -24,9 +29,9 @@ class ColorsReference:
                 element['blue']
             )
 
-        # TODO : raise an error when there is no default value
-        # if not self.__colors.has_key('default'):
-        #     raise ???
+        # Raise an error if there is no default value
+        if 'default' not in self.__colors:
+            raise IOError('No default color found in file ' + referenceFile)
 
     def idToRgb(self, id):
         """ Returns a tuple with red, green and blue values
