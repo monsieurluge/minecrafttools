@@ -11,8 +11,9 @@ The output can be :
 Requirements
 ------------
 
- - Python v3
+ - Python v3.5
  - NBT library (included for now)
+ - Pillow library
 
 Roadmap
 -------
