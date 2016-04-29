@@ -60,7 +60,7 @@ def main(arguments):
     server = Server(minecraftDirectory)
 
     # And generate the cartography
-    server.world().generateCartography(outputDirectory, cartographyType)
+    server.world().cartography().generate(outputDirectory, cartographyType)
 
 # ------------------------------------------------------------------------------
 # Creates the default config file

@@ -92,12 +92,11 @@ class Map:
         """
         pass # TODO saveFragments()
 
-    def saveInto(self, directory, fileName, xOffset = 0, yOffset = 0):
+    def saveInto(self, picture, xOffset = 0, yOffset = 0):
         """ Saves the Map into an existing picture
 
         Params:
-            directory (string): The directory where to get the initial picture
-            fileName (string):  The name of the picture
+            picture (Image):    The picture where to draw the Map
             xOffset (integer):  Starting horizontal position
             yOffset (integer):  Starting vertical position
 
