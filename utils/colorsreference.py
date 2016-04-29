@@ -5,6 +5,12 @@ from utils.mapcolor import MapColor
 import json
 import os
 
+'''
+Blocks are colored according to their material.
+Each material has a base color which is multiplied by 180, 220 or 255, and then divided by 255 to make the map color.
+Each base color is associated with four map colors - to get the first map color ID for a base color, multiply the base color ID by 4.
+'''
+
 class ColorsReference:
 
     def __init__(self):
