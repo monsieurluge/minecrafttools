@@ -18,7 +18,7 @@ def main(arguments):
 
     # Load the config
     try:
-        with open(os.getcwd() + '/config.json') as configFile:
+        with open(os.path.join(os.getcwd(), 'data', 'config.json')) as configFile:
             # Get the config data
             configData          = json.load(configFile)
             cartographyType     = configData['Cartography type']
@@ -29,7 +29,6 @@ def main(arguments):
             # File not found
             print('[WARNING] The default configuration file was not found.')
             createDefaultConfigFile(minecraftDirectory, outputDirectory, cartographyType)
-            print('[INFO] This default configuration file is now generated ; Please restart this script')
             sys.exit(1)
         elif error.errno == 13:
             # Permission denied
@@ -66,7 +65,8 @@ def main(arguments):
 # Creates the default config file
 # ------------------------------------------------------------------------------
 def createDefaultConfigFile(minecraftDirectory, outputDirectory, cartographyType):
-    configFile = open(os.getcwd() + '/config.json', 'w')
+    configPath = os.path.join(os.getcwd(), 'data', 'config.json')
+    configFile = open(configPath, 'w')
 
     # Write the default config values
     configFile.write(
@@ -77,6 +77,7 @@ def createDefaultConfigFile(minecraftDirectory, outputDirectory, cartographyType
 
     # Then close the file
     configFile.close()
+    print('[INFO] A default configuration file was generated:\n' + configPath +'\nPlease restart this script')
 
 # ------------------------------------------------------------------------------
 # Returns the script usage
