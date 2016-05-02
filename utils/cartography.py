@@ -3,6 +3,7 @@
 from nbt       import nbt
 from utils.map import Map
 
+import datetime
 import glob
 import os
 import re
@@ -14,12 +15,12 @@ class Cartography:
     CARTOGRAPHY_UNIQUE    = 'unique'
 
     def __init__(self, mapsDirectory):
-        self.__cartographyHorizontalSize    = 0
-        self.__cartographyVerticalSize      = 0
-        self.__cartographyWestCoordinates   = 0
-        self.__cartographyNorthCoordinates  = 0
-        self.__maps                         = []
-        self.__directory                    = mapsDirectory
+        self.__config             = None
+        self.__directory          = mapsDirectory
+        self.__horizontalSize     = 0
+        self.__maps               = None
+        self.__topLeftCoordinates = [0, 0]
+        self.__verticalSize       = 0
 
     def __generateFragments(self, outputDirectory):
         """ Generates a fragmented cartography (128px*128px pictures)
@@ -50,24 +51,36 @@ class Cartography:
         pass # TODO __generateUnique()
 
     def __loadMaps(self):
-        """ Loads all the maps (which were crafted in game) """
-        for fileName in glob.glob(os.path.join(self.__directory, '*.dat')):
-            if not 'map_' in fileName:
+        """ Loads all the maps (which were crafted in game)
+
+        Returns:
+            Cartography
+        """
+        self.__maps = []
+
+        for mapFile in glob.glob(os.path.join(self.__directory, '*.dat')):
+            if not 'map_' in mapFile:
                 continue
 
-            mapFile = nbt.NBTFile(fileName, 'rb')
-            result  = re.search('(map_\d+).dat', fileName);
+            lastModification = os.path.getmtime(mapFile)
+            mapContent       = nbt.NBTFile(mapFile, 'rb')
+            result           = re.search('(map_\d+).dat', mapFile);
+            # TODO save the last modification date
+            # print(result.group(1), datetime.datetime.fromtimestamp(lastModification))
+            # TODO save the maps list in a file
 
             self.__maps.append(Map(
                 result.group(1),
-                int(str(mapFile.get('data').get('scale'))),
-                int(str(mapFile.get('data').get('dimension'))),
-                int(str(mapFile.get('data').get('width'))),
-                int(str(mapFile.get('data').get('height'))),
-                int(str(mapFile.get('data').get('xCenter'))),
-                int(str(mapFile.get('data').get('zCenter'))),
-                mapFile.get('data').get('colors')
+                int(str(mapContent.get('data').get('scale'))),
+                int(str(mapContent.get('data').get('dimension'))),
+                int(str(mapContent.get('data').get('width'))),
+                int(str(mapContent.get('data').get('height'))),
+                int(str(mapContent.get('data').get('xCenter'))),
+                int(str(mapContent.get('data').get('zCenter'))),
+                mapContent.get('data').get('colors')
             ))
+
+        return self
 
     def generate(self, outputDirectory, cartographyType):
         """ Generates the cartography picture file depending on the type
