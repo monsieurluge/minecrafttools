@@ -34,10 +34,8 @@ class Properties:
 
     def valueOf(self, name):
         """ Returns the value of the named property
-
         Params:
             name (string): The name of the property
-
         Returns:
             string: The value of the property, empty string if the property doesn't exist
         """

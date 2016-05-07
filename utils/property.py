@@ -8,7 +8,6 @@ class Property:
 
     def name(self):
         """ Returns the name of the property
-
         Returns:
             string
         """
@@ -16,7 +15,6 @@ class Property:
 
     def value(self):
         """ Returns the value of the property
-
         Returns:
             string
         """

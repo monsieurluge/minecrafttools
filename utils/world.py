@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from utils.cartography import Cartography
+from utils.cartographymultiple import CartographyMultiple
 
 import os
 import sys
@@ -15,19 +15,27 @@ class World:
 
         self.__folder      = worldFolder
         self.__players     = {}
-        self.__cartography = Cartography(os.path.join(worldFolder, 'data'))
 
-    def cartography(self):
+    def cartography(self, cartographyType):
         """ Returns the cartography
-
+        Parameters:
+            cartographyType (string)
         Returns:
             Cartography
+        Raises:
+            ValueError: If the cartography type is not known
         """
-        return self.__cartography
+        cartographyFolder = os.path.join(self.__folder, 'data')
+
+        if cartographyType == 'multiple':
+            cartography = CartographyMultiple(cartographyFolder)
+        else:
+            raise ValueError()
+
+        return cartography
 
     def players(self):
         """ Returns the players list
-
         Returns:
             dictionnary
         """

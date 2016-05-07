@@ -8,7 +8,6 @@ class Player:
 
     def id(self):
         """ Returns the player ID
-
         Returns:
             string
         """
@@ -16,7 +15,6 @@ class Player:
 
     def name(self):
         """ Returns the player name
-
         Returns:
             string
         """

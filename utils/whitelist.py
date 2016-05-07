@@ -26,10 +26,8 @@ class Whitelist:
 
     def addPlayer(self, player):
         """ Adds a player to the whitelist
-
         Args:
             player (Player): The player to add
-
         Returns:
             Whitelist
         """
@@ -42,10 +40,8 @@ class Whitelist:
 
     def removePlayer(self, playerName):
         """ Removes a player from the whitelist
-
         Args:
             playerName (string): The name of the player to remove
-
         Returns:
             Whitelist
         """
@@ -54,10 +50,8 @@ class Whitelist:
 
     def save(self):
         """ Saves the whitelist
-
         Returns:
             Whitelist
-
         Raises:
             IOError: If the file cannot be written for any reason
         """

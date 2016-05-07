@@ -13,7 +13,6 @@ class Map:
 
     def __init__(self, name, scale, dimension, width, height, xCenter, zCenter, colors):
         """ Creates a Map object
-
         Params:
             name (string):          The Map name (ex: map_8)
             scale (integer):        scale of the Map
@@ -42,7 +41,6 @@ class Map:
 
     def name(self):
         """ Returns the Map name
-
         Returns:
             string
         """
@@ -50,13 +48,10 @@ class Map:
 
     def save(self, directory):
         """ Saves the map to a picture file (.png)
-
         Params:
             directory (string): directory where to save the file
-
         Returns:
             Map
-
         Raises:
             IOError: If the file cannot be written for any reason
         """
@@ -80,13 +75,10 @@ class Map:
 
     def saveFragments(self, directory):
         """ Explodes the Map into 128px*128px pictures
-
         Params:
             directory (string): The directory where to store the pictures
-
         Returns:
             Map
-
         Raises:
             IOError: If the file cannot be written for any reason
         """
@@ -94,15 +86,12 @@ class Map:
 
     def saveInto(self, picture, xOffset = 0, yOffset = 0):
         """ Saves the Map into an existing picture
-
         Params:
             picture (Image):    The picture where to draw the Map
             xOffset (integer):  Starting horizontal position
             yOffset (integer):  Starting vertical position
-
         Returns:
             Map
-
         Raises:
             IOError: If the file cannot be written for any reason
         """
@@ -110,7 +99,6 @@ class Map:
 
     def scale(self):
         """ Returns the map scale
-
         Returns:
             integer
         """

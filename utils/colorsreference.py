@@ -19,7 +19,6 @@ class ColorsReference:
 
     def __loadColorsReference(self):
         """ Loads the colors reference from a json file
-
         Raises:
             IOError
         """
@@ -41,11 +40,9 @@ class ColorsReference:
 
     def idToRgb(self, id):
         """ Returns a tuple with red, green and blue values
-        If there is no color for the ID, it returns a default RGB combination
-
+            If there is no color for the ID, it returns a default RGB combination
         Parameters:
             id (int): the map id
-
         Returns:
             tuple: RGB values. ex: (126, 2, 74)
         """

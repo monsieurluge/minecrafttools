@@ -20,7 +20,6 @@ class Server:
 
     def world(self):
         """ Returns the World
-
         Returns:
             World
         """
