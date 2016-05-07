@@ -28,11 +28,9 @@ class World:
         cartographyFolder = os.path.join(self.__folder, 'data')
 
         if cartographyType == 'multiple':
-            cartography = CartographyMultiple(cartographyFolder)
-        else:
-            raise ValueError()
+            return CartographyMultiple(cartographyFolder)
 
-        return cartography
+        raise ValueError('"' + cartographyType + '" is not a valid cartography type')
 
     def players(self):
         """ Returns the players list

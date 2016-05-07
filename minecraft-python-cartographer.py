@@ -59,7 +59,10 @@ def main(arguments):
     server = Server(minecraftDirectory)
 
     # And generate the cartography
-    server.world().cartography('multiple').generate(outputDirectory)
+    try:
+        server.world().cartography(cartographyType).generateInto(outputDirectory)
+    except (ValueError, IOError) as exception:
+        print('[ERROR] Error when trying to generate the cartography:', format(exception))
 
 # ------------------------------------------------------------------------------
 # Creates the default config file

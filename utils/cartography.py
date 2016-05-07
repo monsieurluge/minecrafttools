@@ -25,7 +25,7 @@ class Cartography:
         """
         maps = []
 
-        for mapFile in glob.glob(os.path.join(self._directory, '*.dat')):
+        for mapFile in glob.glob(os.path.join(self.__directory, '*.dat')):
             if not 'map_' in mapFile:
                 continue
 

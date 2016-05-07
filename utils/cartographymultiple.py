@@ -8,7 +8,7 @@ class CartographyMultiple(Cartography):
     def __init__(self, mapsDirectory):
         super().__init__(mapsDirectory)
 
-    def generate(self, outputDirectory):
+    def generateInto(self, outputDirectory):
         """ Generates as many pictures as maps crafted in game
         Params:
             outputDirectory (string): The directory where to store the pictures
