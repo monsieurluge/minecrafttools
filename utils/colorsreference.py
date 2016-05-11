@@ -22,7 +22,7 @@ class ColorsReference:
         Raises:
             IOError
         """
-        referenceFile = os.path.join(os.path.dirname(__file__), 'map colors.json')
+        referenceFile = os.path.join(os.path.dirname(__file__), '../data/map colors.json')
         data          = json.load(open(referenceFile))
 
         for element in data['colors']:
