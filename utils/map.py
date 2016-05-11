@@ -39,6 +39,13 @@ class Map:
                 print('[ERROR] Failure when trying to load the colors reference: ' + format(exception))
                 sys.exit(1)
 
+    def height(self):
+        """ Returns the map height
+        Returns:
+            integer
+        """
+        return self.__height
+
     def name(self):
         """ Returns the Map name
         Returns:
@@ -95,7 +102,19 @@ class Map:
         Raises:
             IOError: If the file cannot be written for any reason
         """
-        pass # TODO saveInto()
+        scale       = self.__scale + 1
+        draw        = ImageDraw.Draw(picture)
+
+        for height in range(self.__height):
+            for width in range(self.__width):
+                x       = width * scale + xOffset
+                y       = height * scale + yOffset
+                colorId = self.__colors[self.__width * height + width]
+                color   = self.__colorsReference.idToRgb(colorId)
+
+                draw.rectangle([x, y, x + scale - 1, y + scale - 1], fill = color)
+
+        return self
 
     def scale(self):
         """ Returns the map scale
@@ -103,3 +122,19 @@ class Map:
             integer
         """
         return self.__scale
+
+    def topLeftCoordinates(self):
+        """ Returns the map top left coordinates
+        Returns:
+            tuple: (x,z)
+        """
+        xCoordinate = int(self.__xCenter - (self.__width * self.__scale / 2))
+        yCoordinate = int(self.__zCenter - (self.__height * self.__scale / 2))
+        return (xCoordinate, yCoordinate)
+
+    def width(self):
+        """ Returns the map width
+        Returns:
+            integer
+        """
+        return self.__width

@@ -15,7 +15,7 @@ class Cartography:
         self.__directory          = mapsDirectory
         self._horizontalSize     = 0
         self._maps               = self.__loadMaps()
-        self._topLeftCoordinates = [0, 0]
+        self._topLeftCoordinates = None
         self._verticalSize       = 0
 
     def __loadMaps(self):

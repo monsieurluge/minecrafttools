@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from utils.cartographymultiple import CartographyMultiple
+from utils.cartographymultiple  import CartographyMultiple
+from utils.cartographyunique    import CartographyUnique
 
 import os
 import sys
@@ -29,6 +30,8 @@ class World:
 
         if cartographyType == 'multiple':
             return CartographyMultiple(cartographyFolder)
+        elif cartographyType == 'unique':
+            return CartographyUnique(cartographyFolder)
 
         raise ValueError('"' + cartographyType + '" is not a valid cartography type')
 
