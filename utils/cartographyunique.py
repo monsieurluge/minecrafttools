@@ -27,7 +27,6 @@ class CartographyUnique(Cartography):
         # first, determine the picture size
         for map in self._maps:
             mapTopLeft = map.topLeftCoordinates()
-            mapScale   = map.scale() + 1
 
             # top left coordinates
             if self._topLeftCoordinates is None:
@@ -39,21 +38,27 @@ class CartographyUnique(Cartography):
                     self._topLeftCoordinates[1] = mapTopLeft[1]
 
             # width and height
-            if mapTopLeft[0] + (map.width() * mapScale) > self._topLeftCoordinates[0] + self._horizontalSize:
-                self._horizontalSize = mapTopLeft[0] - self._topLeftCoordinates[0] + (map.width() * mapScale)
-            if mapTopLeft[1] + (map.height() * mapScale) > self._topLeftCoordinates[1] + self._verticalSize:
-                self._verticalSize = mapTopLeft[1] - self._topLeftCoordinates[1] + (map.height() * mapScale)
+            # TODO Fix that !!
+            if mapTopLeft[0] < self._topLeftCoordinates[0]:
+                self._horizontalSize += self._topLeftCoordinates[0] - mapTopLeft[0]
+            if mapTopLeft[0] + map.widthInPixels() > self._topLeftCoordinates[0] + self._horizontalSize:
+                self._horizontalSize += (mapTopLeft[0] + map.widthInPixels()) - (self._topLeftCoordinates[0] + self._horizontalSize)
+            if mapTopLeft[1] < self._topLeftCoordinates[1]:
+                self._verticalSize += self._topLeftCoordinates[1] - mapTopLeft[1]
+            if mapTopLeft[1] + map.heightInPixels() > self._topLeftCoordinates[1] + self._verticalSize:
+                self._verticalSize += (mapTopLeft[1] + map.heightInPixels()) - (self._topLeftCoordinates[1] + self._verticalSize)
 
         picture = Image.new('RGB', (self._horizontalSize, self._verticalSize), colorsReference.idToRgb('default'))
+        draw    = ImageDraw.Draw(picture)
 
         # then, draw the in-game crafted maps into the picture
         for map in sorted(self._maps, key = lambda map: map.scale(), reverse = True):
+            xOffset = map.topLeftCoordinates()[0] - self._topLeftCoordinates[0]
+            yOffset = map.topLeftCoordinates()[1] - self._topLeftCoordinates[1]
             try:
-                xOffset = map.topLeftCoordinates()[0] - self._topLeftCoordinates[0]
-                yOffset = map.topLeftCoordinates()[1] - self._topLeftCoordinates[1]
-                map.saveInto(picture, xOffset, yOffset)
+                map.saveInto(draw, xOffset, yOffset)
             except IOError as exception:
-                print('[WARNING] Failure when trying to generate the "' + map.name() + '" map : ' + format(exception))
+                print('[WARNING] Failure when trying to add the "' + map.name() + '" map to the cartography: ' + format(exception))
 
         picture.save(os.path.join(outputDirectory, 'cartography.png'))
 

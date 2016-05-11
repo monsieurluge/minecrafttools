@@ -14,8 +14,8 @@ class World:
             print('[ERROR] The world "' + worldFolder + '" doesn\'t exists.')
             sys.exit(1)
 
-        self.__folder      = worldFolder
-        self.__players     = {}
+        self.__folder   = worldFolder
+        self.__players  = {}
 
     def cartography(self, cartographyType):
         """ Returns the cartography

@@ -39,12 +39,12 @@ class Map:
                 print('[ERROR] Failure when trying to load the colors reference: ' + format(exception))
                 sys.exit(1)
 
-    def height(self):
-        """ Returns the map height
+    def heightInPixels(self):
+        """ Returns the map height, in pixels
         Returns:
             integer
         """
-        return self.__height
+        return self.__height * pow(2, self.__scale)
 
     def name(self):
         """ Returns the Map name
@@ -91,10 +91,10 @@ class Map:
         """
         pass # TODO saveFragments()
 
-    def saveInto(self, picture, xOffset = 0, yOffset = 0):
+    def saveInto(self, draw, xOffset = 0, yOffset = 0):
         """ Saves the Map into an existing picture
         Params:
-            picture (Image):    The picture where to draw the Map
+            draw    (Draw):     The ImageDraw.Draw where to save the Map
             xOffset (integer):  Starting horizontal position
             yOffset (integer):  Starting vertical position
         Returns:
@@ -102,8 +102,7 @@ class Map:
         Raises:
             IOError: If the file cannot be written for any reason
         """
-        scale       = self.__scale + 1
-        draw        = ImageDraw.Draw(picture)
+        scale = pow(2, self.__scale)
 
         for height in range(self.__height):
             for width in range(self.__width):
@@ -124,17 +123,17 @@ class Map:
         return self.__scale
 
     def topLeftCoordinates(self):
-        """ Returns the map top left coordinates
+        """ Returns the map top left coordinates, in pixels
         Returns:
             tuple: (x,z)
         """
-        xCoordinate = int(self.__xCenter - (self.__width * self.__scale / 2))
-        yCoordinate = int(self.__zCenter - (self.__height * self.__scale / 2))
+        xCoordinate = int(self.__xCenter - (self.widthInPixels() / 2))
+        yCoordinate = int(self.__zCenter - (self.heightInPixels() / 2))
         return (xCoordinate, yCoordinate)
 
-    def width(self):
-        """ Returns the map width
+    def widthInPixels(self):
+        """ Returns the map width, in pixels
         Returns:
             integer
         """
-        return self.__width
+        return self.__width * pow(2, self.__scale)
