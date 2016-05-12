@@ -21,7 +21,7 @@ class Map:
             height (integer):           number of color id in the height (default: 128)
             xCenter (integer):          x coordinate of the top left corner of the Map
             zCenter (integer):          z coordinate of the top left corner of the Map
-            colors (list):              TODO MLG: colors description
+            colors (list):              list of the map colors ID
             lastModification (integer): last modification timestamp
         """
         self.__name             = name
@@ -127,6 +127,7 @@ class Map:
                 colorId = self.__colors[self.__width * height + width]
                 color   = self.__colorsReference.idToRgb(colorId)
 
+                # TODO MLG: use transparency instead of default color
                 draw.rectangle([x, y, x + scale - 1, y + scale - 1], fill = color)
 
         return self
