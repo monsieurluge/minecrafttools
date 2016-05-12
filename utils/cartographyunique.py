@@ -48,7 +48,7 @@ class CartographyUnique(Cartography):
         draw    = ImageDraw.Draw(picture)
 
         # then, draw the in-game crafted maps into the picture
-        for map in sorted(self._maps, key = lambda map: map.scale(), reverse = True):
+        for map in sorted(self._maps, key = lambda map: (map.scale(), -1 * map.lastModification()), reverse = True):
             try:
                 map.saveInto(draw, map.left() - self._left, map.top() - self._top)
             except IOError as exception:

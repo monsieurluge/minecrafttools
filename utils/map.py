@@ -11,26 +11,28 @@ class Map:
 
     __colorsReference = None
 
-    def __init__(self, name, scale, dimension, width, height, xCenter, zCenter, colors):
+    def __init__(self, name, scale, dimension, width, height, xCenter, zCenter, colors, lastModification):
         """ Creates a Map object
         Params:
-            name (string):          The Map name (ex: map_8)
-            scale (integer):        scale of the Map
-            dimension (integer):    dimension (nether = -1, surface = 0, end = ?)
-            width (integer):        number of color id in the width (default: 128)
-            height (integer):       number of color id in the height (default: 128)
-            xCenter (integer):      x coordinate of the top left corner of the Map
-            zCenter (integer):      z coordinate of the top left corner of the Map
-            colors (list):          TODO MLG: colors description
+            name (string):              The Map name (ex: map_8)
+            scale (integer):            scale of the Map
+            dimension (integer):        dimension (nether = -1, surface = 0, end = ?)
+            width (integer):            number of color id in the width (default: 128)
+            height (integer):           number of color id in the height (default: 128)
+            xCenter (integer):          x coordinate of the top left corner of the Map
+            zCenter (integer):          z coordinate of the top left corner of the Map
+            colors (list):              TODO MLG: colors description
+            lastModification (integer): last modification timestamp
         """
-        self.__name       = name
-        self.__scale      = int(scale)
-        self.__dimension  = int(dimension)
-        self.__width      = int(width)
-        self.__height     = int(height)
-        self.__xCenter    = xCenter
-        self.__zCenter    = zCenter
-        self.__colors     = colors
+        self.__name             = name
+        self.__scale            = int(scale)
+        self.__dimension        = int(dimension)
+        self.__width            = int(width)
+        self.__height           = int(height)
+        self.__xCenter          = xCenter
+        self.__zCenter          = zCenter
+        self.__colors           = colors
+        self.__lastModification = lastModification
 
         if self.__colorsReference is None:
             try:
@@ -45,6 +47,13 @@ class Map:
             integer
         """
         return self.__height * pow(2, self.__scale)
+
+    def lastModification(self):
+        """ Returns the last modification timestamp
+        Returns:
+            integer
+        """
+        return self.__lastModification
 
     def left(self):
         """ Returns the map left coordinate, in pixels

@@ -30,12 +30,8 @@ class Cartography:
             if not 'map_' in mapFile:
                 continue
 
-            # lastModification = os.path.getmtime(mapFile)
-            mapContent       = nbt.NBTFile(mapFile, 'rb')
-            result           = re.search('(map_\d+).dat', mapFile);
-            # TODO MLG: save the last modification date
-            # print(result.group(1), datetime.datetime.fromtimestamp(lastModification))
-            # TODO MLG: save the maps list in a file
+            mapContent  = nbt.NBTFile(mapFile, 'rb')
+            result      = re.search('(map_\d+).dat', mapFile);
 
             maps.append(Map(
                 result.group(1),
@@ -45,7 +41,8 @@ class Cartography:
                 int(str(mapContent.get('data').get('height'))),
                 int(str(mapContent.get('data').get('xCenter'))),
                 int(str(mapContent.get('data').get('zCenter'))),
-                mapContent.get('data').get('colors')
+                mapContent.get('data').get('colors'),
+                os.path.getmtime(mapFile)
             ))
 
         return maps
