@@ -86,7 +86,7 @@ def createDefaultConfigFile(minecraftDirectory, outputDirectory, cartographyType
 # Returns the script usage
 # ------------------------------------------------------------------------------
 def usage():
-    # TODO Better usage helper
+    # TODO MLG: Better usage helper
     print('Options : [-d|--minecraftdirectory] [-o|--outputdirectory] [-c|--cartographytype]')
 
 # ------------------------------------------------------------------------------

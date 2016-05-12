@@ -21,7 +21,7 @@ class Map:
             height (integer):       number of color id in the height (default: 128)
             xCenter (integer):      x coordinate of the top left corner of the Map
             zCenter (integer):      z coordinate of the top left corner of the Map
-            colors (list):          TODO
+            colors (list):          TODO MLG: colors description
         """
         self.__name       = name
         self.__scale      = int(scale)
@@ -45,6 +45,13 @@ class Map:
             integer
         """
         return self.__height * pow(2, self.__scale)
+
+    def left(self):
+        """ Returns the map left coordinate, in pixels
+        Returns:
+            integer
+        """
+        return int(self.__xCenter - (self.widthInPixels() / 2))
 
     def name(self):
         """ Returns the Map name
@@ -89,7 +96,7 @@ class Map:
         Raises:
             IOError: If the file cannot be written for any reason
         """
-        pass # TODO saveFragments()
+        pass # TODO MLG: saveFragments()
 
     def saveInto(self, draw, xOffset = 0, yOffset = 0):
         """ Saves the Map into an existing picture
@@ -122,14 +129,12 @@ class Map:
         """
         return self.__scale
 
-    def topLeftCoordinates(self):
-        """ Returns the map top left coordinates, in pixels
+    def top(self):
+        """ Returns the map top coordinate, in pixels
         Returns:
-            tuple: (x,z)
+            integer
         """
-        xCoordinate = int(self.__xCenter - (self.widthInPixels() / 2))
-        yCoordinate = int(self.__zCenter - (self.heightInPixels() / 2))
-        return (xCoordinate, yCoordinate)
+        return int(self.__zCenter - (self.heightInPixels() / 2))
 
     def widthInPixels(self):
         """ Returns the map width, in pixels

@@ -23,40 +23,34 @@ class CartographyUnique(Cartography):
         """
         colorsReference = ColorsReference()
 
-        # TODO: fix the picture size & the map drawing
         # first, determine the picture size
         for map in self._maps:
-            mapTopLeft = map.topLeftCoordinates()
-
-            # top left coordinates
-            if self._topLeftCoordinates is None:
-                self._topLeftCoordinates = [mapTopLeft[0], mapTopLeft[1]]
-            else:
-                if self._topLeftCoordinates[0] > mapTopLeft[0]:
-                    self._topLeftCoordinates[0] = mapTopLeft[0]
-                if self._topLeftCoordinates[1] > mapTopLeft[1]:
-                    self._topLeftCoordinates[1] = mapTopLeft[1]
-
-            # width and height
-            # TODO Fix that !!
-            if mapTopLeft[0] < self._topLeftCoordinates[0]:
-                self._horizontalSize += self._topLeftCoordinates[0] - mapTopLeft[0]
-            if mapTopLeft[0] + map.widthInPixels() > self._topLeftCoordinates[0] + self._horizontalSize:
-                self._horizontalSize += (mapTopLeft[0] + map.widthInPixels()) - (self._topLeftCoordinates[0] + self._horizontalSize)
-            if mapTopLeft[1] < self._topLeftCoordinates[1]:
-                self._verticalSize += self._topLeftCoordinates[1] - mapTopLeft[1]
-            if mapTopLeft[1] + map.heightInPixels() > self._topLeftCoordinates[1] + self._verticalSize:
-                self._verticalSize += (mapTopLeft[1] + map.heightInPixels()) - (self._topLeftCoordinates[1] + self._verticalSize)
+            # move the top coordinate
+            if self._top is None:
+                self._top  = map.top()
+            elif self._top > map.top():
+                self._verticalSize += self._top - map.top()
+                self._top = map.top()
+            # move the left coordinate
+            if self._left is None:
+                self._left  = map.left()
+            elif self._left > map.left():
+                self._horizontalSize += self._left - map.left()
+                self._left = map.left()
+            # increase the vertical size
+            if self._top + self._verticalSize < map.top() + map.heightInPixels():
+                self._verticalSize += (map.top() + map.heightInPixels()) - (self._top + self._verticalSize)
+            # increase the horizontal size
+            if self._left + self._horizontalSize < map.left() + map.widthInPixels():
+                self._horizontalSize += (map.left() + map.widthInPixels()) - (self._left + self._horizontalSize)
 
         picture = Image.new('RGB', (self._horizontalSize, self._verticalSize), colorsReference.idToRgb('default'))
         draw    = ImageDraw.Draw(picture)
 
         # then, draw the in-game crafted maps into the picture
         for map in sorted(self._maps, key = lambda map: map.scale(), reverse = True):
-            xOffset = map.topLeftCoordinates()[0] - self._topLeftCoordinates[0]
-            yOffset = map.topLeftCoordinates()[1] - self._topLeftCoordinates[1]
             try:
-                map.saveInto(draw, xOffset, yOffset)
+                map.saveInto(draw, map.left() - self._left, map.top() - self._top)
             except IOError as exception:
                 print('[WARNING] Failure when trying to add the "' + map.name() + '" map to the cartography: ' + format(exception))
 

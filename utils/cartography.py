@@ -11,12 +11,13 @@ import re
 class Cartography:
 
     def __init__(self, mapsDirectory):
-        self.__config             = None
-        self.__directory          = mapsDirectory
-        self._horizontalSize     = 0
-        self._maps               = self.__loadMaps()
-        self._topLeftCoordinates = None
-        self._verticalSize       = 0
+        self.__config           = None
+        self.__directory        = mapsDirectory
+        self._maps              = self.__loadMaps()
+        self._top               = None
+        self._left              = None
+        self._horizontalSize    = 0
+        self._verticalSize      = 0
 
     def __loadMaps(self):
         """ Loads all the maps (which were crafted in game)
@@ -32,9 +33,9 @@ class Cartography:
             # lastModification = os.path.getmtime(mapFile)
             mapContent       = nbt.NBTFile(mapFile, 'rb')
             result           = re.search('(map_\d+).dat', mapFile);
-            # TODO save the last modification date
+            # TODO MLG: save the last modification date
             # print(result.group(1), datetime.datetime.fromtimestamp(lastModification))
-            # TODO save the maps list in a file
+            # TODO MLG: save the maps list in a file
 
             maps.append(Map(
                 result.group(1),
