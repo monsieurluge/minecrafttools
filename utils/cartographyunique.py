@@ -44,15 +44,13 @@ class CartographyUnique(Cartography):
             if self._left + self._horizontalSize < map.left() + map.widthInPixels():
                 self._horizontalSize += (map.left() + map.widthInPixels()) - (self._left + self._horizontalSize)
 
+        # create the picture with a default background color
         picture = Image.new('RGB', (self._horizontalSize, self._verticalSize), colorsReference.idToRgb('default'))
         draw    = ImageDraw.Draw(picture)
 
         # then, draw the in-game crafted maps into the picture
         for map in sorted(self._maps, key = lambda map: (map.scale(), -1 * map.lastModification()), reverse = True):
-            try:
-                map.saveInto(draw, map.left() - self._left, map.top() - self._top)
-            except IOError as exception:
-                print('[WARNING] Failure when trying to add the "' + map.name() + '" map to the cartography: ' + format(exception))
+            map.saveInto(draw, map.left() - self._left, map.top() - self._top)
 
         picture.save(os.path.join(outputDirectory, 'cartography.png'))
 

@@ -115,20 +115,20 @@ class Map:
             yOffset (integer):  Starting vertical position
         Returns:
             Map
-        Raises:
-            IOError: If the file cannot be written for any reason
         """
         scale = pow(2, self.__scale)
 
         for height in range(self.__height):
             for width in range(self.__width):
-                x       = width * scale + xOffset
-                y       = height * scale + yOffset
                 colorId = self.__colors[self.__width * height + width]
-                color   = self.__colorsReference.idToRgb(colorId)
+                # do not draw the default color (ID = 0)
+                if colorId == 0:
+                    continue
 
-                # TODO MLG: use transparency instead of default color
-                draw.rectangle([x, y, x + scale - 1, y + scale - 1], fill = color)
+                x = width * scale + xOffset
+                y = height * scale + yOffset
+
+                draw.rectangle([x, y, x + scale - 1, y + scale - 1], fill = self.__colorsReference.idToRgb(colorId))
 
         return self
 
