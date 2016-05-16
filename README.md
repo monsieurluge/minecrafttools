@@ -9,12 +9,13 @@ This library can be used to:
 ## Requirements
 
  - Python v3.5
- - Pillow library
- - NBT library (included for now)
+ - pillow library
+ - nbt library
 
 ## Installation
 
-TODO
+Go into the package directory, then run this command:
+> python -m pip install .
 
 ## Usage
 

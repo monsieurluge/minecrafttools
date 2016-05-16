@@ -9,7 +9,7 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name                = 'Minecraft Tools',
+    name                = 'minecrafttools',
     version             = '0.1.0',
     description         = 'Minecraft Tools Library',
     long_description    = readme,
