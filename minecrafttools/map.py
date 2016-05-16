@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from minecraft-tools.colorsreference    import ColorsReference
-from PIL                                import Image, ImageDraw
+from minecrafttools.colorsreference import ColorsReference
+from PIL                            import Image, ImageDraw
 
 import itertools
 import os

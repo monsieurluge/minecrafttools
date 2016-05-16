@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from minecraft-tools.property   import Property
+from minecrafttools.property import Property
 
 import re
 import sys

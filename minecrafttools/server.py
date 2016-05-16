@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from minecraft-tools.properties import Properties
-from minecraft-tools.whitelist  import Whitelist
-from minecraft-tools.world      import World
+from minecrafttools.properties import Properties
+from minecrafttools.whitelist  import Whitelist
+from minecrafttools.world      import World
 
 import os
 

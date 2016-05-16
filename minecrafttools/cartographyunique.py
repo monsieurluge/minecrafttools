@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from minecraft-tools.cartography        import Cartography
-from minecraft-tools.colorsreference    import ColorsReference
-from minecraft-tools.map                import Map
-from PIL                                import Image, ImageDraw
+from minecrafttools.cartography     import Cartography
+from minecrafttools.colorsreference import ColorsReference
+from minecrafttools.map             import Map
+from PIL                            import Image, ImageDraw
 
 import os
 

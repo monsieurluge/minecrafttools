@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from minecraft-tools.map    import Map
-from nbt                    import nbt
+from minecrafttools.map import Map
 
 import datetime
 import glob
+import nbt
 import os
 import re
 

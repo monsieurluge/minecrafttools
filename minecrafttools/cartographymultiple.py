@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from minecraft-tools.cartography    import Cartography
-from minecraft-tools.map            import Map
+from minecrafttools.cartography import Cartography
+from minecrafttools.map         import Map
 
 class CartographyMultiple(Cartography):
 
