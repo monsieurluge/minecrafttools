@@ -1,23 +1,29 @@
-A Minecraft Cartographer, written in Python
-===========================================
+# A Minecraft tools library, written in Python
 
-This cartographer uses the in-game crafted maps to generate a cartography of your Minecraft world.
+This library can be used to:
+ - print a cartography based on the in-game crafted maps
+ - manage the server
+ - manage the whitelist
+ - manage the banned players
 
-The output can be :
- - As many pictures as in-game crafted maps
- - An unique picture
- - Multiple 128px*128px pictures
-
-Requirements
-------------
+## Requirements
 
  - Python v3.5
- - NBT library (included for now)
  - Pillow library
+ - NBT library (included for now)
 
-Roadmap
--------
+## Installation
 
- - Generate an unique cartography picture
- - Generate a fragmented cartography, for "Google Maps" display behaviour
- - Remove the NBT library from the sources and include it properly
+TODO
+
+## Usage
+
+TODO
+
+## Changelog
+
+See the [CHANGELOG](CHANGELOG.md) file
+
+## Roadmap
+
+See the [Trello board](https://trello.com/b/wfme7mdc/minecraft-tools-scripts)
