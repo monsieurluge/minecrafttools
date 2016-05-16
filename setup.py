@@ -9,13 +9,13 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name                = 'Minecraft Cartographer',
-    version             = '0.0.1',
-    description         = 'Simple Minecraft Cartographer',
+    name                = 'Minecraft Tools',
+    version             = '0.1.0',
+    description         = 'Minecraft Tools Library',
     long_description    = readme,
     author              = 'Monsieur Luge',
     author_email        = 'monsieurluge@gmail.com',
-    url                 = 'https://github.com/MonsieurLuge/minecraft-python-cartographer',
+    url                 = 'https://github.com/MonsieurLuge/minecrafttools',
     license             = license,
-    packages            = ['minecraftserver', 'minecraftcartographer']
+    packages            = ['minecrafttools']
 )

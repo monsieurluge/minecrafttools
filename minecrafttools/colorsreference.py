@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from utils.mapcolor import MapColor
+from minecraft-tools.mapcolor   import MapColor
 
 import json
 import os

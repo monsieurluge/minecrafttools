@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from nbt       import nbt
-from utils.map import Map
+from minecraft-tools.map    import Map
+from nbt                    import nbt
 
 import datetime
 import glob

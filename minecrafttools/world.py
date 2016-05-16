@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from utils.cartographymultiple  import CartographyMultiple
-from utils.cartographyunique    import CartographyUnique
+from minecraft-tools.cartographymultiple    import CartographyMultiple
+from minecraft-tools.cartographyunique      import CartographyUnique
 
 import os
 import sys

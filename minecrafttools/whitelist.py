@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from utils.player import Player
+from minecraft-tools.player import Player
 
 import json
 import operator
