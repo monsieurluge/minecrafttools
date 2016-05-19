@@ -22,8 +22,10 @@ class ColorsReference:
         Raises:
             IOError
         """
-        referenceFile = os.path.join(os.path.dirname(__file__), '../data/map colors.json')
-        data          = json.load(open(referenceFile))
+        # TODO MLG: find a better way to get the file path
+        referenceFilePath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
+        referenceFile     = os.path.join(referenceFilePath, 'map colors.json')
+        data              = json.load(open(referenceFile))
 
         for element in data['colors']:
             self.__colors[element['id']] = MapColor(

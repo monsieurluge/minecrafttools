@@ -36,6 +36,7 @@ class Map:
 
         if self.__colorsReference is None:
             try:
+                # TODO MLG: check how many times this reference is loaded (must be 1)
                 self.__colorsReference = ColorsReference()
             except IOError as exception:
                 print('[ERROR] Failure when trying to load the colors reference: ' + format(exception))

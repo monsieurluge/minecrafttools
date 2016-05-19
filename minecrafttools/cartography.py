@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from minecrafttools.map import Map
-
 import datetime
 import glob
 import nbt
 import os
 import re
+
+from minecrafttools.map import Map
+from nbt.nbt            import NBTFile
 
 class Cartography:
 
@@ -30,7 +31,7 @@ class Cartography:
             if not 'map_' in mapFile:
                 continue
 
-            mapContent  = nbt.NBTFile(mapFile, 'rb')
+            mapContent  = NBTFile(mapFile, 'rb')
             result      = re.search('(map_\d+).dat', mapFile);
 
             maps.append(Map(
