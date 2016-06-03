@@ -32,6 +32,6 @@ setup(
     packages            = ['minecrafttools'],
     install_requires    = ['nbt'],
     package_data        = {
-        'data': ['map colors.json']
+        'minecrafttools/data': ['mapcolors.json'],
     }
 )
