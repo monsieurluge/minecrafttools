@@ -24,7 +24,7 @@ class ColorsReference:
         """
         # TODO MLG: find a better way to get the file path
         referenceFilePath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
-        referenceFile     = os.path.join(referenceFilePath, 'map colors.json')
+        referenceFile     = os.path.join(referenceFilePath, 'mapcolors.json')
         data              = json.load(open(referenceFile))
 
         for element in data['colors']:
