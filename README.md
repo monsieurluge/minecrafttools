@@ -16,9 +16,20 @@ This library can be used to:
 Go into the package directory, then run this command:
 > python -m pip install .
 
+Soon:
+> python -m pip install minecrafttools
+
 ## Usage
 
-See usage examples [in this project](https://github.com/MonsieurLuge/minecraftscripts)
+### Cartography
+
+Command line example:
+> python minecrafttools/scripts/cartographer.py -d "/home/minecraft/server/" -o "/home/minecraft/cartography/" -t "unique"
+
+Python interpreter:
+> \>\>\> from minecrafttools.scripts import cartographer
+
+> \>\>\> cartographer.generateCartography("/home/minecraft/server/", "/home/minecraft/cartography/", "unique")
 
 ## Changelog
 
