@@ -30,7 +30,7 @@ setup(
     ],
     keywords            = 'minecraft tools development',
     packages            = ['minecrafttools'],
-    install_requires    = ['nbt'],
+    install_requires    = ['nbt', 'pillow'],
     package_data        = {
         'minecrafttools/data': ['mapcolors.json'],
     }
