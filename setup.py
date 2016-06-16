@@ -29,9 +29,9 @@ setup(
         'Programming Language :: Python :: 3'
     ],
     keywords            = 'minecraft tools development',
-    packages            = ['minecrafttools'],
+    packages            = ['minecrafttools', 'minecrafttools.scripts'],
     install_requires    = ['nbt', 'pillow'],
     package_data        = {
-        'minecrafttools/data': ['mapcolors.json'],
+        'minecrafttools': ['data/mapcolors.json'],
     }
 )
