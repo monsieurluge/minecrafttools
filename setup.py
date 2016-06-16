@@ -14,7 +14,7 @@ with open(path.join(here, 'LICENSE.txt'), encoding='utf-8') as license:
 
 setup(
     name                = 'minecrafttools',
-    version             = '0.1.1',
+    version             = '0.1.2',
     description         = 'Minecraft Server Tools',
     long_description    = readmeContent,
     author              = 'Monsieur Luge',

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.2] - 2016-06-16
+
+### Fixed
+
+ - data files not imported when installing the package (c1c140a)
+
 ## [0.1.1] - 2016-06-10
 
 ### Fixed
