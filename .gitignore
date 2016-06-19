@@ -58,3 +58,6 @@ target/
 
 # Project files
 config.json
+
+# Virtual python environments
+virt*/
