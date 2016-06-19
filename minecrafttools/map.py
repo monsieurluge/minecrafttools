@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from minecrafttools.colorsreference import ColorsReference
 from PIL                            import Image, ImageDraw
+from minecrafttools.intcoordinates  import IntCoordinates
 
 import itertools
 import os
@@ -9,45 +9,29 @@ import sys
 
 class Map:
 
-    __colorsReference = None
-
-    def __init__(self, name, scale, dimension, width, height, xCenter, zCenter, colors, lastModification):
+    def __init__(self, name, dimension, coordinates, colorsMap, lastModification, mapDimensions):
         """ Creates a Map object
         Params:
-            name (string):              The Map name (ex: map_8)
-            scale (integer):            scale of the Map
-            dimension (integer):        dimension (nether = -1, surface = 0, end = ?)
-            width (integer):            number of color id in the width (default: 128)
-            height (integer):           number of color id in the height (default: 128)
-            xCenter (integer):          x coordinate of the top left corner of the Map
-            zCenter (integer):          z coordinate of the top left corner of the Map
-            colors (list):              list of the map colors ID
-            lastModification (integer): last modification timestamp
+            name (string):                     the Map name (ex: map_8)
+            dimension (integer):               dimension (nether = -1, surface = 0, end = ?)
+            coordinates (IntCoordinates):      top left coordinates
+            colorsMap (ColorsMap):             list of colors ID and their references
+            lastModification (integer):        last modification timestamp
+            mapDimensions (MapDimensions):     map size informations
         """
         self.__name             = name
-        self.__scale            = int(scale)
         self.__dimension        = int(dimension)
-        self.__width            = int(width)
-        self.__height           = int(height)
-        self.__xCenter          = xCenter
-        self.__zCenter          = zCenter
-        self.__colors           = colors
+        self.__coordinates      = coordinates
+        self.__colorsMap        = colorsMap
         self.__lastModification = lastModification
-
-        if self.__colorsReference is None:
-            try:
-                # TODO MLG: check how many times this reference is loaded (must be 1)
-                self.__colorsReference = ColorsReference()
-            except IOError as exception:
-                print('[ERROR] Failure when trying to load the colors reference: ' + format(exception))
-                sys.exit(1)
+        self.__mapDimensions    = mapDimensions
 
     def heightInPixels(self):
         """ Returns the map height, in pixels
         Returns:
             integer
         """
-        return self.__height * pow(2, self.__scale)
+        return self.__mapDimensions.height() * pow(2, self.__mapDimensions.scale())
 
     def lastModification(self):
         """ Returns the last modification timestamp
@@ -61,7 +45,7 @@ class Map:
         Returns:
             integer
         """
-        return int(self.__xCenter - (self.widthInPixels() / 2))
+        return int(self.__coordinates.intValues()[0] - (self.widthInPixels() / 2))
 
     def name(self):
         """ Returns the Map name
@@ -79,17 +63,16 @@ class Map:
         Raises:
             IOError: If the file cannot be written for any reason
         """
-        scale       = self.__scale + 1
-        pictureSize = (self.__width * scale, self.__height * scale)
-        picture     = Image.new('RGB', pictureSize, self.__colorsReference.idToRgb('default'))
+        scale       = self.__mapDimensions.scale() + 1
+        pictureSize = (self.__mapDimensions.width() * scale, self.__mapDimensions.height() * scale)
+        picture     = Image.new('RGB', pictureSize, self.__colorsMap.rgbDefaultColor())
         draw        = ImageDraw.Draw(picture)
 
-        for height in range(self.__height):
-            for width in range(self.__width):
+        for height in range(self.__mapDimensions.height()):
+            for width in range(self.__mapDimensions.width()):
                 x       = width * scale
                 y       = height * scale
-                colorId = self.__colors[self.__width * height + width]
-                color   = self.__colorsReference.idToRgb(colorId)
+                color   = self.__colorsMap.rgbColor(IntCoordinates(width, height))
 
                 draw.rectangle([x, y, x + scale - 1, y + scale - 1], fill = color)
 
@@ -117,19 +100,21 @@ class Map:
         Returns:
             Map
         """
-        scale = pow(2, self.__scale)
+        scale = pow(2, self.__mapDimensions.scale())
 
-        for height in range(self.__height):
-            for width in range(self.__width):
-                colorId = self.__colors[self.__width * height + width]
-                # do not draw the default color (ID = 0)
-                if colorId == 0:
-                    continue
-
+        for height in range(self.__mapDimensions.height()):
+            for width in range(self.__mapDimensions.width()):
                 x = width * scale + xOffset
                 y = height * scale + yOffset
 
-                draw.rectangle([x, y, x + scale - 1, y + scale - 1], fill = self.__colorsReference.idToRgb(colorId))
+                # do not draw the default color
+                if self.__colorsMap.isDefaultColor(IntCoordinates(width, height)):
+                    continue
+
+                draw.rectangle(
+                    [x, y, x + scale - 1, y + scale - 1],
+                    fill = self.__colorsMap.rgbColor(IntCoordinates(width, height))
+                )
 
         return self
 
@@ -138,18 +123,18 @@ class Map:
         Returns:
             integer
         """
-        return self.__scale
+        return self.__mapDimensions.scale()
 
     def top(self):
         """ Returns the map top coordinate, in pixels
         Returns:
             integer
         """
-        return int(self.__zCenter - (self.heightInPixels() / 2))
+        return int(self.__coordinates.intValues()[1] - (self.heightInPixels() / 2))
 
     def widthInPixels(self):
         """ Returns the map width, in pixels
         Returns:
             integer
         """
-        return self.__width * pow(2, self.__scale)
+        return self.__mapDimensions.width() * pow(2, self.__mapDimensions.scale())
