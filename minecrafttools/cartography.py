@@ -6,13 +6,8 @@ import nbt
 import os
 import re
 
-from minecrafttools.colorsmap       import ColorsMap
-from minecrafttools.colorsreference import ColorsReference
-from minecrafttools.dimensions      import Dimensions
-from minecrafttools.intcoordinates  import IntCoordinates
-from minecrafttools.map             import Map
-from minecrafttools.mapdimensions   import MapDimensions
-from nbt.nbt                        import NBTFile
+from minecrafttools.map import Map
+from nbt.nbt            import NBTFile
 
 class Cartography:
 
@@ -36,35 +31,19 @@ class Cartography:
             if not 'map_' in mapFile:
                 continue
 
-            nbtContent = NBTFile(mapFile, 'rb')
-            nbtData    = nbtContent.get('data') # TODO MLG: convert properly bytes to int/string
-            result     = re.search('(map_\d+).dat', mapFile);
+            mapContent  = NBTFile(mapFile, 'rb')
+            result      = re.search('(map_\d+).dat', mapFile);
 
-            maps.append(
-                Map(
-                    result.group(1), # map file name (ex: map_12)
-                    int(str(nbtData.get('dimension'))),
-                    IntCoordinates(
-                        str(nbtData.get('xCenter')),
-                        str(nbtData.get('zCenter'))
-                    ),
-                    ColorsMap(
-                        Dimensions(
-                            str(nbtData.get('width')),
-                            str(nbtData.get('height'))
-                        ),
-                        nbtData.get('colors'),
-                        ColorsReference()
-                    ),
-                    os.path.getmtime(mapFile), # last modification
-                    MapDimensions(
-                        Dimensions(
-                            str(nbtData.get('width')),
-                            str(nbtData.get('height'))
-                        ),
-                        str(nbtData.get('scale'))
-                    )
-                )
-            )
+            maps.append(Map(
+                result.group(1),
+                int(str(mapContent.get('data').get('scale'))),
+                int(str(mapContent.get('data').get('dimension'))),
+                int(str(mapContent.get('data').get('width'))),
+                int(str(mapContent.get('data').get('height'))),
+                int(str(mapContent.get('data').get('xCenter'))),
+                int(str(mapContent.get('data').get('zCenter'))),
+                mapContent.get('data').get('colors'),
+                os.path.getmtime(mapFile)
+            ))
 
         return maps
