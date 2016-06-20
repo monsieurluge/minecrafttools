@@ -2,26 +2,24 @@
 
 class ColorsMap:
 
-    def __init__(self, dimensions, colors, colorsReference):
+    def __init__(self, dimensions, scale, colors):
         self.__dimensions      = dimensions
+        self.__scale           = int(scale)
         self.__colors          = colors
-        self.__colorsReference = colorsReference
 
-    def rgbDefaultColor(self):
-        return self.__colorsReference.idToRgb('default')
-
-    def isDefaultColor(self, intCoordinates):
-        index = self.__dimensions.intValues()[1] * intCoordinates.intValues()[1] + intCoordinates.intValues()[0]
+    def id(self, coordinates):
+        index = self.width() * coordinates.intValues()[1] + coordinates.intValues()[0]
 
         if index > len(self.__colors):
-            raise IndexError('these ColorsMap coordinates are out of bound : [' + str(intCoordinates.intValues()) + ']')
+            raise IndexError('these ColorsMap coordinates are out of bound : [' + str(coordinates.intValues()) + ']')
 
-        return int(self.__colors[index]) == 0
+        return int(self.__colors[index])
 
-    def rgbColor(self, intCoordinates):
-        index = self.__dimensions.intValues()[1] * intCoordinates.intValues()[1] + intCoordinates.intValues()[0]
+    def height(self):
+        return self.__dimensions.intValues()[0]
 
-        if index > len(self.__colors):
-            raise IndexError('these ColorsMap coordinates are out of bound : [' + str(intCoordinates.intValues()) + ']')
+    def scale(self):
+        return self.__scale
 
-        return self.__colorsReference.idToRgb(self.__colors[index])
+    def width(self):
+        return self.__dimensions.intValues()[1]

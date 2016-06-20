@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from minecrafttools.cartography import Cartography
-from minecrafttools.map         import Map
+from minecrafttools.cartography     import Cartography
+from minecrafttools.colorsreference import ColorsReference
+from minecrafttools.map             import Map
 
 class CartographyMultiple(Cartography):
 
@@ -17,9 +18,11 @@ class CartographyMultiple(Cartography):
         Raises:
             IOError: If the picture file cannot be created for any reason
         """
+        colorsReference = ColorsReference()
+
         for map in sorted(self._maps, key = lambda map: map.scale()):
             try:
-                map.save(outputDirectory)
+                map.save(outputDirectory, colorsReference)
             except IOError as exception:
                 print('[WARNING] Failure when trying to generate the "' + map.name() + '" map : ' + format(exception))
 

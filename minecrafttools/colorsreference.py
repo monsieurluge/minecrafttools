@@ -17,6 +17,12 @@ class ColorsReference:
         self.__colors = {}
         self.__loadColorsReference()
 
+    def __baseId(self, id):
+        return int(id / 4) * 4 + 2
+
+    def __exists(self, id):
+        return self.__baseId(id) in self.__colors
+
     def __loadColorsReference(self):
         """ Loads the colors reference from a json file
         Raises:
@@ -40,7 +46,10 @@ class ColorsReference:
         if 'default' not in self.__colors:
             raise IOError('No default color found in file ' + referenceFile)
 
-    def idToRgb(self, id):
+    def isDefaultColor(self, id):
+        return not self.__exists(self.__baseId(id))
+
+    def rgb(self, id):
         """ Returns a tuple with red, green and blue values
             If there is no color for the ID, it returns a default RGB combination
         Parameters:
@@ -51,12 +60,13 @@ class ColorsReference:
         if id == 'default':
             return self.__colors['default'].rgb()
 
-        baseId   = int(id / 4) * 4 + 2
-        multiply = [180, 220, 255, 135]
-
-        if not baseId in self.__colors:
+        if not self.__exists(self.__baseId(id)):
             return self.__colors['default'].rgb()
 
-        rgb = map(lambda color: int(color * multiply[id % 4] / 255), self.__colors[baseId].rgb())
+        multiply = [180, 220, 255, 135]
+        rgb      = map(lambda color: int(color * multiply[id % 4] / 255), self.__colors[self.__baseId(id)].rgb())
 
         return tuple(rgb)
+
+    def rgbDefaultColor(self):
+        return self.rgb('default')
