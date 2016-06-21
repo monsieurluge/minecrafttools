@@ -2,20 +2,26 @@
 
 from minecrafttools.cartographymultiple import CartographyMultiple
 from minecrafttools.cartographyunique   import CartographyUnique
+from minecrafttools.maps                import Maps
 
 import os
 import sys
 
 class World:
 
-    def __init__(self, worldFolder):
+    def __init__(self, directory):
+        """ Creates a World object
+        Params:
+            directory (string): the directory where the Minecraft world is stored
+        """
         # The world folder must exist
-        if not os.path.exists(worldFolder):
-            print('[ERROR] The world "' + worldFolder + '" doesn\'t exists.')
+        if not os.path.exists(directory): # TODO MLG: remove this test from the constructor
+            print('[ERROR] The world "' + directory + '" doesn\'t exists.')
             sys.exit(1)
 
-        self.__folder   = worldFolder
-        self.__players  = {}
+        self.__directory = directory
+        self.__maps      = Maps(os.path.join(directory, 'data'))
+        self.__players   = {} # Players(os.path.join(worldFolder, 'data'))
 
     def cartography(self, cartographyType):
         """ Returns the cartography
@@ -26,12 +32,10 @@ class World:
         Raises:
             ValueError: If the cartography type is not known
         """
-        cartographyFolder = os.path.join(self.__folder, 'data')
-
         if cartographyType == 'multiple':
-            return CartographyMultiple(cartographyFolder)
+            return CartographyMultiple(self.__maps)
         elif cartographyType == 'unique':
-            return CartographyUnique(cartographyFolder)
+            return CartographyUnique(self.__maps)
 
         raise ValueError('"' + cartographyType + '" is not a valid cartography type')
 
