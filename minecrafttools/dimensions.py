@@ -3,8 +3,8 @@
 class Dimensions:
 
     def __init__(self, width, height):
-        self.__width  = int(width)
-        self.__height = int(height)
+        self.__width  = width
+        self.__height = height
 
     def intValues(self):
         return tuple([

@@ -3,11 +3,11 @@
 class Coordinates:
 
     def __init__(self, longitude, latitude):
-        self.__longitude = int(longitude)
-        self.__latitude  = int(latitude)
+        self.__longitude = longitude
+        self.__latitude  = latitude
 
     def intValues(self):
         return tuple([
-            self.__longitude,
-            self.__latitude
+            int(self.__longitude),
+            int(self.__latitude)
         ])

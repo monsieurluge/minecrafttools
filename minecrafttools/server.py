@@ -9,6 +9,10 @@ import os
 class Server:
 
     def __init__(self, minecraftDirectory):
+        """ Creates a Server object
+        Params:
+            minecraftDirectory (string): the directory where to find the server.properties file
+        """
         self.__properties = Properties(os.path.join(minecraftDirectory, 'server.properties'))
         self.__whitelist  = Whitelist(os.path.join(minecraftDirectory, 'whitelist.json'))
         self.__world      = World(os.path.join(minecraftDirectory, self.__properties.valueOf('level-name')))

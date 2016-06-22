@@ -3,7 +3,7 @@
 class Property:
 
     def __init__(self, name, value):
-        self.__name = name
+        self.__name  = name
         self.__value = value
 
     def name(self):

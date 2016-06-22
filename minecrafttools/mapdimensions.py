@@ -7,10 +7,10 @@ class MapDimensions:
         self.__scale      = scale
 
     def height(self):
-        return int(self.__dimensions.intValues()[1])
+        return self.__dimensions.intValues()[1]
 
     def scale(self):
         return int(self.__scale)
 
     def width(self):
-        return int(self.__dimensions.intValues()[0])
+        return self.__dimensions.intValues()[0]
