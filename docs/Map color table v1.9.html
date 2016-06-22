@@ -12,14 +12,29 @@
         background-color: #FFFFFF;
     }
 
+    table caption {
+        color: white;
+        font-size: 2em;
+        font-family: sans-serif;
+    }
+
     tr:nth-child(even) {
         background-color: #E4E4E4;
         border: none;
- 3  }
+    }
 </style>
 <body>
 <table class="wikitable sortable">
 <caption>Color Table</caption>
+<tr>
+<td colspan="5">
+    <ul>
+        <li>Blocks are colored according to their material.</li>
+        <li>Each material has a base color which is multiplied by 180, 220 or 255, and then divided by 255 to make the map color.</li>
+        <li>Each base color is associated with four map colors - to get the first map color ID for a base color, multiply the base color ID by 4.</li>
+    </ul>
+</td>
+</tr>
 <tr>
 <th>ID</th>
 <th class="unsortable" width="100px">Color</th>
