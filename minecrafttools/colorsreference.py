@@ -30,9 +30,11 @@ class ColorsReference:
             IOError
         """
         # TODO MLG: find a better way to get the file path
-        referenceFilePath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
-        referenceFile     = os.path.join(referenceFilePath, 'mapcolors.json')
-        data              = json.load(open(referenceFile))
+        referenceFileName = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data', 'mapcolors.json')
+        referenceFile     = open(referenceFileName)
+        data              = json.load(referenceFile)
+
+        referenceFile.close()
 
         for element in data['colors']:
             self.__colors[element['id']] = MapColor(
@@ -45,7 +47,7 @@ class ColorsReference:
 
         # Raise an error if there is no default value
         if 'default' not in self.__colors:
-            raise IOError('No default color found in file ' + referenceFile)
+            raise IOError('No default color found in file ' + referenceFileName)
 
     def isDefaultColor(self, id):
         return not self.__exists(self.__baseId(id))
