@@ -8,9 +8,8 @@ class TestCoordinates(unittest.TestCase):
 
     def test_intValues(self):
         coordinates = Coordinates("10", 15.123)
-        intValues   = coordinates.intValues()
-
-        self.assertEqual((10, 15), intValues)
+        # coordinates as integer values
+        self.assertEqual((10, 15), coordinates.intValues())
 
 if __name__ == '__main__':
     unittest.main()
