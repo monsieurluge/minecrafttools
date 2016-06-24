@@ -6,7 +6,7 @@ from minecrafttools.coordinates import Coordinates
 
 class TestCoordinates(unittest.TestCase):
 
-    def test_IntValues(self):
+    def test_intValues(self):
         coordinates = Coordinates("10", 15.123)
         intValues   = coordinates.intValues()
 

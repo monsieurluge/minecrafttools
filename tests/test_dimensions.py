@@ -6,7 +6,7 @@ from minecrafttools.dimensions import Dimensions
 
 class TestDimensions(unittest.TestCase):
 
-    def test_IntValues(self):
+    def test_intValues(self):
         dimensions = Dimensions("10", 15.123)
         intValues  = dimensions.intValues()
         # dimensions are always integer values
