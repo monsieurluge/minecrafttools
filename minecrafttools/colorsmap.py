@@ -34,7 +34,7 @@ class ColorsMap:
         Returns:
             integer
         """
-        return self.__dimensions.intValues()[0]
+        return self.__dimensions.intValues()[1]
 
     def scale(self):
         """ Returns the scale of the map
@@ -48,4 +48,4 @@ class ColorsMap:
         Returns:
             integer
         """
-        return self.__dimensions.intValues()[1]
+        return self.__dimensions.intValues()[0]
