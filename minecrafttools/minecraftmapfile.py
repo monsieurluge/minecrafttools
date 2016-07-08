@@ -4,6 +4,7 @@ import nbt
 import os
 import re
 
+from minecrafttools.colorsmap      import ColorsMap
 from minecrafttools.intcoordinates import IntCoordinates
 from minecrafttools.intdimensions  import IntDimensions
 from minecrafttools.map            import Map
@@ -27,15 +28,19 @@ class MinecraftMapFile:
 
         return Map(
             self.name(),
-            IntDimensions(
-                str(nbtData.get('width')),
-                str(nbtData.get('height'))
-            ),
+            int(str(nbtData.get('dimension'))), # dimension (Nether, World, End, etc)
             IntCoordinates(
                 str(nbtData.get('xCenter')),
                 str(nbtData.get('zCenter'))
             ),
-            nbtData.get('colors')
+            ColorsMap(
+                IntDimensions(
+                    str(nbtData.get('width')),
+                    str(nbtData.get('height'))
+                ),
+                int(str(nbtData.get('scale'))),
+                nbtData.get('colors')
+            ),
             self.lastModification()
         )
 
