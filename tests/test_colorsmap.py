@@ -2,9 +2,9 @@
 
 import unittest
 
-from minecrafttools.colorsmap   import ColorsMap
-from minecrafttools.coordinates import Coordinates # TODO MLG: use fake classes instead
-from minecrafttools.dimensions  import Dimensions # TODO MLG: use fake classes instead
+from minecrafttools.colorsmap      import ColorsMap
+from minecrafttools.intcoordinates import IntCoordinates # TODO MLG: use fake classes instead
+from minecrafttools.dimensions     import Dimensions # TODO MLG: use fake classes instead
 
 class TestColorsMap(unittest.TestCase):
 
@@ -17,7 +17,7 @@ class TestColorsMap(unittest.TestCase):
 
     def test_id(self):
         # in this test case the id is 9
-        self.assertEqual(7, self.__testColorsMap.id(Coordinates(1, 2)))
+        self.assertEqual(7, self.__testColorsMap.id(IntCoordinates(1, 2)))
 
     def test_height(self):
         # in this test case the height is 4

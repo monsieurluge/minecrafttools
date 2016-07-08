@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from PIL                         import Image, ImageDraw
-from minecrafttools.coordinates  import Coordinates
+from PIL                           import Image, ImageDraw
+from minecrafttools.intcoordinates import IntCoordinates
 
 import itertools
 import os
@@ -12,11 +12,11 @@ class Map:
     def __init__(self, name, dimension, coordinates, colorsMap, lastModification):
         """ Creates a Map object
         Params:
-            name (string):              map name (ex: map_8)
-            dimension (integer):        dimension (nether = -1, surface = 0, end = ?)
-            coordinates (Coordinates):  top left coordinates
-            colorsMap (ColorsMap):      list of colors ID and the dimensions of the map
-            lastModification (integer): last modification timestamp
+            name (string):                map name (ex: map_8)
+            dimension (integer):          dimension (nether = -1, surface = 0, end = ?)
+            coordinates (IntCoordinates): top left coordinates
+            colorsMap (ColorsMap):        list of colors ID and the dimensions of the map
+            lastModification (integer):   last modification timestamp
         """
         self.__name             = name
         self.__dimension        = int(dimension)
@@ -43,7 +43,7 @@ class Map:
         Returns:
             integer
         """
-        return int(self.__coordinates.intValues()[0] - (self.widthInPixels() / 2))
+        return int(self.__coordinates.longitude() - (self.widthInPixels() / 2))
 
     def name(self):
         """ Returns the Map name
@@ -131,7 +131,7 @@ class Map:
         Returns:
             integer
         """
-        return int(self.__coordinates.intValues()[1] - (self.heightInPixels() / 2))
+        return int(self.__coordinates.latitude() - (self.heightInPixels() / 2))
 
     def widthInPixels(self):
         """ Returns the map width, in pixels

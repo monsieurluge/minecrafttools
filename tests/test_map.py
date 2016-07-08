@@ -2,10 +2,10 @@
 
 import unittest
 
-from minecrafttools.colorsmap   import ColorsMap
-from minecrafttools.coordinates import Coordinates
-from minecrafttools.dimensions  import Dimensions
-from minecrafttools.map         import Map
+from minecrafttools.colorsmap      import ColorsMap
+from minecrafttools.intcoordinates import IntCoordinates
+from minecrafttools.dimensions     import Dimensions
+from minecrafttools.map            import Map
 
 class TestMap(unittest.TestCase):
 
@@ -13,7 +13,7 @@ class TestMap(unittest.TestCase):
         self.__testMap = Map(
             'test map',
             0,
-            Coordinates(-125, 367),
+            IntCoordinates(-125, 367),
             ColorsMap(
                 Dimensions(2, 3),
                 2,

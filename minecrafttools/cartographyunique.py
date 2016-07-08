@@ -2,7 +2,7 @@
 
 from minecrafttools.cartography     import Cartography
 from minecrafttools.colorsreference import ColorsReference
-from minecrafttools.coordinates     import Coordinates
+from minecrafttools.intcoordinates  import IntCoordinates
 from minecrafttools.dimensions      import Dimensions
 from PIL                            import Image, ImageDraw
 
@@ -47,7 +47,7 @@ class CartographyUnique(Cartography):
             if left + width < map.left() + map.widthInPixels():
                 width += (map.left() + map.widthInPixels()) - (left + width)
 
-        self._coordinates = Coordinates(left, top) # TODO MLG: move this to the constructor !
+        self._coordinates = IntCoordinates(left, top) # TODO MLG: move this to the constructor !
         self._dimensions  = Dimensions(width, height) # TODO MLG: move this to the constructor !
 
         # create the picture with a default background color
@@ -61,7 +61,7 @@ class CartographyUnique(Cartography):
 
         # then, draw the in-game crafted maps into the picture
         for map in sorted(self._maps.maps(), key = lambda map: (map.scale(), -1 * map.lastModification()), reverse = True):
-            map.saveInto(draw, map.left() - self._coordinates.intValues()[0], map.top() - self._coordinates.intValues()[1], self._colorsReference)
+            map.saveInto(draw, map.left() - self._coordinates.longitude(), map.top() - self._coordinates.latitude(), self._colorsReference)
 
         picture.save(os.path.join(outputDirectory, 'cartography.png'))
 

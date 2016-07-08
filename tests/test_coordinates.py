@@ -2,14 +2,20 @@
 
 import unittest
 
-from minecrafttools.coordinates import Coordinates
+from minecrafttools.intcoordinates import IntCoordinates
 
-class TestCoordinates(unittest.TestCase):
+class TestIntCoordinates(unittest.TestCase):
 
-    def test_intValues(self):
-        coordinates = Coordinates("10", 15.123)
-        # coordinates as integer values
-        self.assertEqual((10, 15), coordinates.intValues())
+    def setUp(self):
+        self.__coordinates = IntCoordinates("10", 15.123)
+
+    def test_latitude(self):
+        # latitude is an integer value
+        self.assertEqual((15), self.__coordinates.latitude())
+
+    def test_longitude(self):
+        # longitude is an integer value
+        self.assertEqual((10), self.__coordinates.longitude())
 
 if __name__ == '__main__':
     unittest.main()

@@ -16,16 +16,16 @@ class ColorsMap:
     def id(self, coordinates):
         """ Returns the color ID by its coordinates
         Params:
-            coordinates (Coordinates): coordinates of the color ID
+            coordinates (IntCoordinates): coordinates of the color ID
         Returns:
             integer
         Raises:
             IndexError when the coordinates are out of bound
         """
-        index = self.width() * coordinates.intValues()[1] + coordinates.intValues()[0]
+        index = self.width() * coordinates.latitude() + coordinates.longitude()
 
         if index > len(self.__colors):
-            raise IndexError('these ColorsMap coordinates are out of bound : [' + str(coordinates.intValues()) + ']')
+            raise IndexError('these ColorsMap coordinates are out of bound : [' + str(coordinates.longitude()) + ',' + str(coordinates.latitude()) + ']')
 
         return int(self.__colors[index])
 
