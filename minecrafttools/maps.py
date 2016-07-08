@@ -6,11 +6,10 @@ import nbt
 import os
 import re
 
-from minecrafttools.colorsmap      import ColorsMap
-from minecrafttools.intcoordinates import IntCoordinates
-from minecrafttools.intdimensions  import IntDimensions
-from minecrafttools.minecraftmap   import MinecraftMap
-from nbt.nbt                       import NBTFile
+from minecrafttools.colorsmap        import ColorsMap
+from minecrafttools.intcoordinates   import IntCoordinates
+from minecrafttools.intdimensions    import IntDimensions
+from minecrafttools.minecraftmapfile import MinecraftMapFile
 
 class Maps:
 
@@ -24,33 +23,15 @@ class Maps:
         self.__mapsLoaded = False
 
     def __loadMaps(self):
-        """ Loads all the maps (which were crafted in game) """
-        for mapFile in glob.glob(os.path.join(self.__directory, '*.dat')):
-            if not 'map_' in mapFile:
+        """ Loads all the maps which were crafted in game """
+        for path in glob.glob(os.path.join(self.__directory, '*.dat')):
+            if not 'map_' in path:
                 continue
 
-            nbtData = NBTFile(mapFile, 'rb').get('data')
-            result  = re.search('(map_\d+).dat', mapFile);
-
             self.__maps.append(
-                MinecraftMap(
-                    result.group(1), # map file name (ex: map_12)
-                    str(nbtData.get('dimension')),
-                    IntCoordinates(
-                        str(nbtData.get('xCenter')),
-                        str(nbtData.get('zCenter'))
-                    ),
-                    ColorsMap(
-                        IntDimensions(
-                            str(nbtData.get('width')),
-                            str(nbtData.get('height'))
-                        ),
-                        str(nbtData.get('scale')),
-                        nbtData.get('colors')
-                    ),
-                    os.path.getmtime(mapFile) # last modification
-                )
+                MinecraftMapFile(path)
             )
+
         self.__mapsLoaded = True # TODO MLG : ugly !
 
     def maps(self):

@@ -17,7 +17,7 @@ def generateCartography(minecraftDirectory, outputDirectory, cartographyType):
         cartographyType (string):    what kind of cartography to generate (unique, multiple, [fragmented])
     '''
     try:
-        Server(minecraftDirectory).world().cartography(cartographyType).generateInto(outputDirectory)
+        Server(minecraftDirectory).world().cartography(cartographyType, outputDirectory).save()
     except (ValueError, IOError) as exception:
         print('Error when trying to generate the cartography:', format(exception))
 

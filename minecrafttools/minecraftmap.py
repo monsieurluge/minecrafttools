@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from PIL                           import Image, ImageDraw
 from minecrafttools.intcoordinates import IntCoordinates
 from minecrafttools.intdimensions  import IntDimensions
-
-import itertools
-import os
-import sys
 
 class MinecraftMap:
 

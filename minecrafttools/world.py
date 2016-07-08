@@ -9,33 +9,34 @@ import sys
 
 class World:
 
-    def __init__(self, directory):
+    def __init__(self, folder):
         """ Creates a World object
         Params:
-            directory (string): the directory where the Minecraft world is stored
+            folder (string): the folder where the Minecraft world is stored
         """
         # The world folder must exist
-        if not os.path.exists(directory): # TODO MLG: remove this test from the constructor
-            print('[ERROR] The world "' + directory + '" doesn\'t exists.')
+        if not os.path.exists(folder): # TODO MLG: remove this test from the constructor
+            print('[ERROR] The world "' + folder + '" doesn\'t exists.')
             sys.exit(1)
 
-        self.__directory = directory
-        self.__maps      = Maps(os.path.join(directory, 'data'))
-        self.__players   = {} # Players(os.path.join(worldFolder, 'data'))
+        self.__folder  = folder
+        self.__maps    = Maps(os.path.join(folder, 'data'))
+        self.__players = {} # Players(os.path.join(worldFolder, 'data'))
 
-    def cartography(self, cartographyType):
+    def cartography(self, cartographyType, outputFolder):
         """ Returns the cartography
         Parameters:
             cartographyType (string)
+            outputFolder (string)
         Returns:
             Cartography
         Raises:
             ValueError: If the cartography type is not known
         """
         if cartographyType == 'multiple':
-            return CartographyMultiple(self.__maps)
+            return CartographyMultiple(self.__maps, outputFolder)
         elif cartographyType == 'unique':
-            return CartographyUnique(self.__maps)
+            return CartographyUnique(self.__maps, outputFolder)
 
         raise ValueError('"' + cartographyType + '" is not a valid cartography type')
 

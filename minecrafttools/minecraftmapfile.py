@@ -27,7 +27,6 @@ class MinecraftMapFile:
         nbtData = NBTFile(self.__path, 'rb').get('data')
 
         return MinecraftMap(
-            self.name(),
             int(str(nbtData.get('dimension'))), # dimension (Nether, World, End, etc)
             IntCoordinates(
                 str(nbtData.get('xCenter')),
@@ -40,8 +39,7 @@ class MinecraftMapFile:
                 ),
                 int(str(nbtData.get('scale'))),
                 nbtData.get('colors')
-            ),
-            self.lastModification()
+            )
         )
 
     def lastModification(self):
