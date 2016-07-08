@@ -7,7 +7,7 @@ import re
 from minecrafttools.colorsmap      import ColorsMap
 from minecrafttools.intcoordinates import IntCoordinates
 from minecrafttools.intdimensions  import IntDimensions
-from minecrafttools.map            import Map
+from minecrafttools.minecraftmap   import MinecraftMap
 from nbt.nbt                       import NBTFile
 
 class MinecraftMapFile:
@@ -26,7 +26,7 @@ class MinecraftMapFile:
         """
         nbtData = NBTFile(self.__path, 'rb').get('data')
 
-        return Map(
+        return MinecraftMap(
             self.name(),
             int(str(nbtData.get('dimension'))), # dimension (Nether, World, End, etc)
             IntCoordinates(

@@ -7,10 +7,10 @@ import itertools
 import os
 import sys
 
-class Map:
+class MinecraftMap:
 
     def __init__(self, name, dimension, coordinates, colorsMap, lastModification):
-        """ Creates a Map object
+        """ Creates a MinecraftMap object
         Params:
             name (string):                map name (ex: map_8)
             dimension (integer):          dimension (nether = -1, surface = 0, end = ?)
@@ -58,7 +58,7 @@ class Map:
             directory (string):                directory where to save the file
             colorsReference (ColorsReference): reference between map color ID's and rgb colors
         Returns:
-            Map
+            MinecraftMap
         Raises:
             IOError: If the file cannot be written for any reason
         """
@@ -71,7 +71,7 @@ class Map:
             for width in range(self.__colorsMap.width()):
                 x       = width * scale
                 y       = height * scale
-                color   = colorsReference.rgb(self.__colorsMap.id(Coordinates(width, height)))
+                color   = colorsReference.rgb(self.__colorsMap.id(IntCoordinates(width, height)))
 
                 draw.rectangle([x, y, x + scale - 1, y + scale - 1], fill = color)
 
@@ -85,11 +85,11 @@ class Map:
             directory (string):                the directory where to store the pictures
             colorsReference (ColorsReference): reference between map color ID's and rgb colors
         Returns:
-            Map
+            MinecraftMap
         Raises:
             IOError: If the file cannot be written for any reason
         """
-        raise Exception('Map.saveFragments() can\'t be used for now') # TODO MLG: saveFragments()
+        raise Exception('MinecraftMap.saveFragments() can\'t be used for now') # TODO MLG: saveFragments()
 
     def saveInto(self, draw, xOffset, yOffset, colorsReference):
         """ Saves the Map into an existing picture
@@ -99,7 +99,7 @@ class Map:
             yOffset (integer):                 starting vertical position
             colorsReference (ColorsReference): reference between map color ID's and rgb colors
         Returns:
-            Map
+            MinecraftMap
         """
         scale = pow(2, self.__colorsMap.scale())
 
@@ -109,12 +109,12 @@ class Map:
                 y = height * scale + yOffset
 
                 # do not draw the default color
-                if colorsReference.isDefaultColor(self.__colorsMap.id(Coordinates(width, height))):
+                if colorsReference.isDefaultColor(self.__colorsMap.id(IntCoordinates(width, height))):
                     continue
 
                 draw.rectangle(
                     [x, y, x + scale - 1, y + scale - 1],
-                    fill = colorsReference.rgb(self.__colorsMap.id(Coordinates(width, height)))
+                    fill = colorsReference.rgb(self.__colorsMap.id(IntCoordinates(width, height)))
                 )
 
         return self

@@ -2,7 +2,6 @@
 
 from minecrafttools.cartography     import Cartography
 from minecrafttools.colorsreference import ColorsReference
-from minecrafttools.map             import Map
 
 class CartographyMultiple(Cartography):
 

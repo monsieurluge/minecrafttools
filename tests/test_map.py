@@ -5,12 +5,12 @@ import unittest
 from minecrafttools.colorsmap      import ColorsMap
 from minecrafttools.intcoordinates import IntCoordinates
 from minecrafttools.intdimensions  import IntDimensions
-from minecrafttools.map            import Map
+from minecrafttools.minecraftmap   import MinecraftMap
 
 class TestMap(unittest.TestCase):
 
     def setUp(self):
-        self.__testMap = Map(
+        self.__testMap = MinecraftMap(
             'test map',
             0,
             IntCoordinates(-125, 367),

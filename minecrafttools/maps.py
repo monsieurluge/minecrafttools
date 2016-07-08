@@ -6,11 +6,11 @@ import nbt
 import os
 import re
 
-from minecrafttools.colorsmap       import ColorsMap
-from minecrafttools.intcoordinates  import IntCoordinates
-from minecrafttools.dimensions      import IntDimensions
-from minecrafttools.map             import Map
-from nbt.nbt                        import NBTFile
+from minecrafttools.colorsmap      import ColorsMap
+from minecrafttools.intcoordinates import IntCoordinates
+from minecrafttools.intdimensions  import IntDimensions
+from minecrafttools.minecraftmap   import MinecraftMap
+from nbt.nbt                       import NBTFile
 
 class Maps:
 
@@ -33,7 +33,7 @@ class Maps:
             result  = re.search('(map_\d+).dat', mapFile);
 
             self.__maps.append(
-                Map(
+                MinecraftMap(
                     result.group(1), # map file name (ex: map_12)
                     str(nbtData.get('dimension')),
                     IntCoordinates(
