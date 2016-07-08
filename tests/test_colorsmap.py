@@ -4,13 +4,13 @@ import unittest
 
 from minecrafttools.colorsmap      import ColorsMap
 from minecrafttools.intcoordinates import IntCoordinates # TODO MLG: use fake classes instead
-from minecrafttools.dimensions     import Dimensions # TODO MLG: use fake classes instead
+from minecrafttools.intdimensions  import IntDimensions # TODO MLG: use fake classes instead
 
 class TestColorsMap(unittest.TestCase):
 
     def setUp(self):
         self.__testColorsMap = ColorsMap(
-            Dimensions(3, 4),
+            IntDimensions(3, 4),
             2,
             [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
         )

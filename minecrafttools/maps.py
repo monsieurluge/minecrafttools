@@ -8,7 +8,7 @@ import re
 
 from minecrafttools.colorsmap       import ColorsMap
 from minecrafttools.intcoordinates  import IntCoordinates
-from minecrafttools.dimensions      import Dimensions
+from minecrafttools.dimensions      import IntDimensions
 from minecrafttools.map             import Map
 from nbt.nbt                        import NBTFile
 
@@ -41,7 +41,7 @@ class Maps:
                         str(nbtData.get('zCenter'))
                     ),
                     ColorsMap(
-                        Dimensions(
+                        IntDimensions(
                             str(nbtData.get('width')),
                             str(nbtData.get('height'))
                         ),

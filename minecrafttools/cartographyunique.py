@@ -3,7 +3,7 @@
 from minecrafttools.cartography     import Cartography
 from minecrafttools.colorsreference import ColorsReference
 from minecrafttools.intcoordinates  import IntCoordinates
-from minecrafttools.dimensions      import Dimensions
+from minecrafttools.intdimensions   import IntDimensions
 from PIL                            import Image, ImageDraw
 
 import os
@@ -48,12 +48,12 @@ class CartographyUnique(Cartography):
                 width += (map.left() + map.widthInPixels()) - (left + width)
 
         self._coordinates = IntCoordinates(left, top) # TODO MLG: move this to the constructor !
-        self._dimensions  = Dimensions(width, height) # TODO MLG: move this to the constructor !
+        self._dimensions  = IntDimensions(width, height) # TODO MLG: move this to the constructor !
 
         # create the picture with a default background color
         picture = Image.new(
             'RGB',
-            (self._dimensions.intValues()[0], self._dimensions.intValues()[1]),
+            (self._dimensions.width(), self._dimensions.height()),
             self._colorsReference.rgbDefaultColor()
         )
 

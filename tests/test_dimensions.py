@@ -2,14 +2,20 @@
 
 import unittest
 
-from minecrafttools.dimensions import Dimensions
+from minecrafttools.intdimensions import IntDimensions
 
-class TestDimensions(unittest.TestCase):
+class TestIntDimensions(unittest.TestCase):
 
-    def test_intValues(self):
-        dimensions = Dimensions("10", 15.123)
-        # dimensions are always integer values
-        self.assertEqual((10, 15), dimensions.intValues())
+    def setUp(self):
+        self.__dimensions = IntDimensions("10", 15.123)
+
+    def test_width(self):
+        # width is an integer value
+        self.assertEqual(10, self.__dimensions.width())
+
+    def test_height(self):
+        # height is an integer value
+        self.assertEqual(15, self.__dimensions.height())
 
 if __name__ == '__main__':
     unittest.main()
