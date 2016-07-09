@@ -17,30 +17,38 @@ class MinecraftMapFile:
         Params:
             path (string): the path to the map file on disk
         """
-        self.__path = path
+        self.__path   = path
+        self.__cached = []
 
     def content(self):
         """ Returns the content of the file
         Returns:
             MinecraftMap
         """
+        if len(self.__cached) > 0:
+            return self.__cached[0]
+
         nbtData = NBTFile(self.__path, 'rb').get('data')
 
-        return MinecraftMap(
-            int(str(nbtData.get('dimension'))), # dimension (Nether, World, End, etc)
-            IntCoordinates(
-                str(nbtData.get('xCenter')),
-                str(nbtData.get('zCenter'))
-            ),
-            ColorsMap(
-                IntDimensions(
-                    str(nbtData.get('width')),
-                    str(nbtData.get('height'))
+        self.__cached.append(
+            MinecraftMap(
+                int(str(nbtData.get('dimension'))), # dimension (Nether, World, End, etc)
+                IntCoordinates(
+                    str(nbtData.get('xCenter')),
+                    str(nbtData.get('zCenter'))
                 ),
-                int(str(nbtData.get('scale'))),
-                nbtData.get('colors')
+                ColorsMap(
+                    IntDimensions(
+                        str(nbtData.get('width')),
+                        str(nbtData.get('height'))
+                    ),
+                    int(str(nbtData.get('scale'))),
+                    nbtData.get('colors')
+                )
             )
         )
+
+        return self.content()
 
     def lastModification(self):
         """ Returns the file last modification time (timestamp)
