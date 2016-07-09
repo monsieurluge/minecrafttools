@@ -4,6 +4,7 @@ import json
 import os
 import sys
 import getopt
+import datetime
 
 from minecrafttools.server import Server
 from optparse              import OptionParser
@@ -16,10 +17,16 @@ def generateCartography(minecraftDirectory, outputDirectory, cartographyType):
         outputDirectory (string):    the directory where to generate the cartography file(s)
         cartographyType (string):    what kind of cartography to generate (unique, multiple, [fragmented])
     '''
+    start = datetime.datetime.now()
+
     try:
         Server(minecraftDirectory).world().cartography(cartographyType, outputDirectory).save()
     except (ValueError, IOError) as exception:
         print('Error when trying to generate the cartography:', format(exception))
+
+    end = datetime.datetime.now()
+
+    print('time spent:', round((end - start) / datetime.timedelta(seconds=1), 2), 's')
 
 def main(arguments):
     ''' Main script for command-line purpose'''
