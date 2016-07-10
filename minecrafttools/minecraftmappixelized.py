@@ -26,8 +26,8 @@ class MinecraftMapPixelized:
             IntDimensions
         """
         return IntDimensions(
-            self.__origin.width() * pow(2, self.__origin.scale()),
-            self.__origin.height() * pow(2, self.__origin.scale())
+            self.__origin.dimensions().width() * pow(2, self.__origin.scale()),
+            self.__origin.dimensions().height() * pow(2, self.__origin.scale())
         )
 
     def id(self, coordinates):
