@@ -17,7 +17,7 @@ class MinecraftMap:
         self.__colorsMap   = colorsMap
 
     def coordinates(self):
-        """ Returns the coordinates of the map
+        """ Returns the top left coordinates of the map
         Returns:
             IntCoordinates
         """
