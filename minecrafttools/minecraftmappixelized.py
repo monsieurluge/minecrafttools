@@ -9,7 +9,7 @@ class MinecraftMapPixelized:
     def __init__(self, minecraftMap):
         """ Creates a MinecraftMapPixelized object
         Params:
-            minecraftMap (MinecraftMap): the map to "pixelized"
+            minecraftMap (MinecraftMap): the map to "pixelize"
         """
         self.__origin = minecraftMap
 
