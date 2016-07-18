@@ -11,9 +11,9 @@ from minecrafttools.minecraftmappixelized import MinecraftMapPixelized
 class TestMinecraftMap(unittest.TestCase):
 
     def setUp(self):
-        self.testCoordinates = IntCoordinates(-125, 367)
-        self.testDimensions  = IntDimensions(8, 12)
-        self.testSubject     = MinecraftMapPixelized(
+        self.expectedCoordinates = IntCoordinates(-125, 367)
+        self.expectedDimensions  = IntDimensions(8, 12)
+        self.testSubject         = MinecraftMapPixelized(
             MinecraftMap(
                 0,
                 IntCoordinates(-125, 367),
@@ -28,32 +28,34 @@ class TestMinecraftMap(unittest.TestCase):
     def test_coordinates(self):
         # longitude
         self.assertEqual(
-            self.testCoordinates.longitude(),
+            self.expectedCoordinates.longitude(),
             self.testSubject.coordinates().longitude()
         )
         # latitude
         self.assertEqual(
-            self.testCoordinates.latitude(),
+            self.expectedCoordinates.latitude(),
             self.testSubject.coordinates().latitude()
         )
 
     def test_dimensions(self):
         # height
         self.assertEqual(
-            self.testDimensions.height(),
+            self.expectedDimensions.height(),
             self.testSubject.dimensions().height()
         )
         # width
         self.assertEqual(
-            self.testDimensions.width(),
+            self.expectedDimensions.width(),
             self.testSubject.dimensions().width()
         )
 
     def test_id(self):
-        pass
+        # id
+        self.assertEqual(5, self.testSubject.id(IntCoordinates(7, 11)))
 
     def test_scale(self):
-        self.assertEqual(2, self.testSubject.scale())
+        # scale
+        self.assertEqual(4, self.testSubject.scale())
 
 if __name__ == '__main__':
     unittest.main()
