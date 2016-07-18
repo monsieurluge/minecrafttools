@@ -26,8 +26,8 @@ class MinecraftMapPixelized:
             IntDimensions
         """
         return IntDimensions(
-            self.__origin.dimensions().width() * pow(2, self.__origin.scale()),
-            self.__origin.dimensions().height() * pow(2, self.__origin.scale())
+            self.__origin.dimensions().width() * self.scale(),
+            self.__origin.dimensions().height() * self.scale()
         )
 
     def id(self, coordinates):
@@ -39,14 +39,19 @@ class MinecraftMapPixelized:
         Raises:
             IndexError when the coordinates are out of bound
         """
-        return self.__origin.id(coordinates)
+        return self.__origin.id(
+            IntCoordinates(
+                coordinates.longitude() // self.scale(),
+                coordinates.latitude() // self.scale()
+            )
+        )
 
     def scale(self):
         """ Returns the map scale
         Returns:
             integer
         """
-        return self.__origin.scale()
+        return pow(2, self.__origin.scale())
 
     def type(self):
         """ Returns the map type (surface, nether, end, etc)
