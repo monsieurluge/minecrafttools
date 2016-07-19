@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from minecrafttools.colorsreference import ColorsReference
-from minecrafttools.intcoordinates  import IntCoordinates
-from minecrafttools.intdimensions   import IntDimensions
-from PIL                            import Image, ImageDraw
+from minecrafttools.colorsreference       import ColorsReference
+from minecrafttools.intcoordinates        import IntCoordinates
+from minecrafttools.intdimensions         import IntDimensions
+from PIL                                  import Image, ImageDraw
+from minecrafttools.minecraftmappixelized import MinecraftMapPixelized
 
 import os
 
@@ -35,28 +36,30 @@ class CartographyUnique():
         width  = 0
         height = 0
 
-        for map in self.__maps.maps():
+        for mapFile in self.__maps.maps():
+            mapPixelized = MinecraftMapPixelized(mapFile.content())
+
             # move the top coordinate
             if top is None:
-                top  = map.top()
-            elif top > map.top():
-                height += top - map.top()
-                top = map.top()
+                top  = mapPixelized.coordinates().latitude()
+            elif top > mapPixelized.coordinates().latitude():
+                height += top - mapPixelized.coordinates().latitude()
+                top = mapPixelized.coordinates().latitude()
 
             # move the left coordinate
             if left is None:
-                left  = map.left()
-            elif left > map.left():
-                width += left - map.left()
-                left = map.left()
+                left  = mapPixelized.coordinates().longitude()
+            elif left > mapPixelized.coordinates().longitude():
+                width += left - mapPixelized.coordinates().longitude()
+                left = mapPixelized.coordinates().longitude()
 
             # increase the vertical size
-            if top + height < map.top() + map.heightInPixels():
-                height += (map.top() + map.heightInPixels()) - (top + height)
+            if top + height < mapPixelized.coordinates().latitude() + mapPixelized.dimensions().height():
+                height += (mapPixelized.coordinates().latitude() + mapPixelized.dimensions().height()) - (top + height)
 
             # increase the horizontal size
-            if left + width < map.left() + map.widthInPixels():
-                width += (map.left() + map.widthInPixels()) - (left + width)
+            if left + width < mapPixelized.coordinates().longitude() + mapPixelized.dimensions().width():
+                width += (mapPixelized.coordinates().longitude() + mapPixelized.dimensions().width()) - (left + width)
 
         self.__coordinates = IntCoordinates(left, top) # TODO MLG: move this to the constructor !
         self.__dimensions  = IntDimensions(width, height) # TODO MLG: move this to the constructor !
@@ -71,8 +74,19 @@ class CartographyUnique():
         draw = ImageDraw.Draw(picture)
 
         # then, draw the in-game crafted maps into the picture
-        for map in sorted(self.__maps.maps(), key = lambda map: (map.scale(), -1 * map.lastModification()), reverse = True):
-            map.saveInto(draw, map.left() - self.__coordinates.longitude(), map.top() - self.__coordinates.latitude(), self.__colorsReference)
+        for mapFile in sorted(self.__maps.maps(), key = lambda mapFile: (mapFile.content().scale(), -1 * mapFile.lastModification()), reverse = True):
+            mapPixelized = MinecraftMapPixelized(mapFile.content())
+            offsetX      = mapPixelized.coordinates().longitude() - self.__coordinates.longitude()
+            offsetY      = mapPixelized.coordinates().latitude() - self.__coordinates.latitude()
+
+            for y in range(0, mapPixelized.dimensions().height(), mapPixelized.scale()):
+                for x in range(0, mapPixelized.dimensions().width(), mapPixelized.scale()):
+                    draw.rectangle(
+                        [
+                            offsetX + x, offsetY + y, offsetX + x + mapPixelized.scale(), offsetY + y + mapPixelized.scale()
+                        ],
+                        fill = self.__colorsReference.rgb(mapPixelized.id(IntCoordinates(x, y)))
+                    )
 
         picture.save(os.path.join(self.__folder, 'cartography.png'))
 
