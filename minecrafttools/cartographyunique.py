@@ -8,7 +8,19 @@ from PIL                            import Image, ImageDraw
 
 import os
 
-class CartographyUnique(Cartography):
+class CartographyUnique():
+
+    def __init__(self, maps, folder):
+        """ Creates a CartographyUnique object
+        Params:
+            maps (Maps):     a list of maps
+            folder (string): the folder where to store the cartography files
+        """
+        self.__colorsReference = ColorsReference()
+        self.__coordinates     = None # TODO MLG : find the right way to initialize the coordinates
+        self.__dimensions      = None # TODO MLG : find the right way to initialize the dimensions
+        self.__folder          = folder
+        self.__maps            = maps
 
     def generateInto(self, outputDirectory):
         # TODO MLG: it's time to do some refactoring here
@@ -24,7 +36,7 @@ class CartographyUnique(Cartography):
         width  = 0
         height = 0
 
-        for map in self._maps.maps():
+        for map in self.__maps.maps():
             # move the top coordinate
             if top is None:
                 top  = map.top()
@@ -47,21 +59,21 @@ class CartographyUnique(Cartography):
             if left + width < map.left() + map.widthInPixels():
                 width += (map.left() + map.widthInPixels()) - (left + width)
 
-        self._coordinates = IntCoordinates(left, top) # TODO MLG: move this to the constructor !
-        self._dimensions  = IntDimensions(width, height) # TODO MLG: move this to the constructor !
+        self.__coordinates = IntCoordinates(left, top) # TODO MLG: move this to the constructor !
+        self.__dimensions  = IntDimensions(width, height) # TODO MLG: move this to the constructor !
 
         # create the picture with a default background color
         picture = Image.new(
             'RGB',
-            (self._dimensions.width(), self._dimensions.height()),
-            self._colorsReference.rgbDefaultColor()
+            (self.__dimensions.width(), self.__dimensions.height()),
+            self.__colorsReference.rgbDefaultColor()
         )
 
         draw = ImageDraw.Draw(picture)
 
         # then, draw the in-game crafted maps into the picture
-        for map in sorted(self._maps.maps(), key = lambda map: (map.scale(), -1 * map.lastModification()), reverse = True):
-            map.saveInto(draw, map.left() - self._coordinates.longitude(), map.top() - self._coordinates.latitude(), self._colorsReference)
+        for map in sorted(self.__maps.maps(), key = lambda map: (map.scale(), -1 * map.lastModification()), reverse = True):
+            map.saveInto(draw, map.left() - self.__coordinates.longitude(), map.top() - self.__coordinates.latitude(), self.__colorsReference)
 
         picture.save(os.path.join(outputDirectory, 'cartography.png'))
 
