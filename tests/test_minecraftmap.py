@@ -10,13 +10,13 @@ from minecrafttools.minecraftmap   import MinecraftMap
 class TestMinecraftMap(unittest.TestCase):
 
     def setUp(self):
-        self.testCoordinates = IntCoordinates(-125, 367)
-        self.testDimensions  = IntDimensions(2, 3)
-        self.testSubject     = MinecraftMap(
+        self.expectedCoordinates = IntCoordinates(-129, 361)
+        self.expectedDimensions  = IntDimensions(2, 3)
+        self.testSubject         = MinecraftMap(
             0,
-            self.testCoordinates,
+            IntCoordinates(-125, 367),
             ColorsMap(
-                self.testDimensions,
+                IntDimensions(2, 3),
                 2,
                 [0, 1, 2, 3, 4, 5]
             )
@@ -25,24 +25,24 @@ class TestMinecraftMap(unittest.TestCase):
     def test_coordinates(self):
         # longitude
         self.assertEqual(
-            self.testCoordinates.longitude(),
+            self.expectedCoordinates.longitude(),
             self.testSubject.coordinates().longitude()
         )
         # latitude
         self.assertEqual(
-            self.testCoordinates.latitude(),
+            self.expectedCoordinates.latitude(),
             self.testSubject.coordinates().latitude()
         )
 
     def test_dimensions(self):
         # height
         self.assertEqual(
-            self.testDimensions.height(),
+            self.expectedDimensions.height(),
             self.testSubject.dimensions().height()
         )
         # width
         self.assertEqual(
-            self.testDimensions.width(),
+            self.expectedDimensions.width(),
             self.testSubject.dimensions().width()
         )
 
