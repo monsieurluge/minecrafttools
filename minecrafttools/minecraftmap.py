@@ -9,7 +9,7 @@ class MinecraftMap:
         """ Creates a MinecraftMap object
         Params:
             dimension (integer):          dimension (nether = -1, surface = 0, end = ?)
-            coordinates (IntCoordinates): top left coordinates
+            coordinates (IntCoordinates): coordinates of the center of the map
             colorsMap (ColorsMap):        list of colors ID and the dimensions of the map
         """
         self.__dimension   = int(dimension)
@@ -21,7 +21,10 @@ class MinecraftMap:
         Returns:
             IntCoordinates
         """
-        return self.__coordinates
+        return IntCoordinates(
+            self.__coordinates.longitude() - (self.dimensions().width() * pow(2, self.scale())) // 2,
+            self.__coordinates.latitude() - (self.dimensions().height() * pow(2, self.scale())) // 2
+        )
 
     def dimensions(self):
         """ Returns the dimensions of the map
