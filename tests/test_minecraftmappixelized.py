@@ -29,12 +29,12 @@ class TestMinecraftMap(unittest.TestCase):
         # longitude
         self.assertEqual(
             self.expectedCoordinates.longitude(),
-            self.testSubject.coordinates().longitude()
+            self.testSubject.topLeft().longitude()
         )
         # latitude
         self.assertEqual(
             self.expectedCoordinates.latitude(),
-            self.testSubject.coordinates().latitude()
+            self.testSubject.topLeft().latitude()
         )
 
     def test_dimensions(self):
