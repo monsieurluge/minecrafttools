@@ -11,7 +11,7 @@ from minecrafttools.minecraftmappixelized import MinecraftMapPixelized
 class TestMinecraftMap(unittest.TestCase):
 
     def setUp(self):
-        self.expectedCoordinates = IntCoordinates(-125, 367)
+        self.expectedCoordinates = IntCoordinates(-129, 361)
         self.expectedDimensions  = IntDimensions(8, 12)
         self.testSubject         = MinecraftMapPixelized(
             MinecraftMap(
