@@ -10,9 +10,7 @@ from minecrafttools.minecraftmap   import MinecraftMap
 class TestMinecraftMap(unittest.TestCase):
 
     def setUp(self):
-        self.expectedCoordinates = IntCoordinates(-129, 361)
-        self.expectedDimensions  = IntDimensions(2, 3)
-        self.testSubject         = MinecraftMap(
+        self.testSubject = MinecraftMap(
             0,
             IntCoordinates(-125, 367),
             ColorsMap(
@@ -23,31 +21,36 @@ class TestMinecraftMap(unittest.TestCase):
         )
 
     def test_coordinates(self):
+        expectedCoordinates = IntCoordinates(-129, 361)
+
         # longitude
         self.assertEqual(
-            self.expectedCoordinates.longitude(),
+            expectedCoordinates.longitude(),
             self.testSubject.coordinates().longitude()
         )
         # latitude
         self.assertEqual(
-            self.expectedCoordinates.latitude(),
+            expectedCoordinates.latitude(),
             self.testSubject.coordinates().latitude()
         )
 
     def test_dimensions(self):
+        expectedDimensions = IntDimensions(2, 3)
+
         # height
         self.assertEqual(
-            self.expectedDimensions.height(),
+            expectedDimensions.height(),
             self.testSubject.dimensions().height()
         )
         # width
         self.assertEqual(
-            self.expectedDimensions.width(),
+            expectedDimensions.width(),
             self.testSubject.dimensions().width()
         )
 
     def test_id(self):
-        pass
+        # id
+        self.assertEqual(5, self.testSubject.id(IntCoordinates(1, 2)))
 
     def test_scale(self):
         self.assertEqual(2, self.testSubject.scale())
