@@ -8,12 +8,10 @@ from minecrafttools.intdimensions         import IntDimensions
 from minecrafttools.minecraftmap          import MinecraftMap
 from minecrafttools.minecraftmappixelized import MinecraftMapPixelized
 
-class TestMinecraftMap(unittest.TestCase):
+class TestMinecraftMapPixelized(unittest.TestCase):
 
     def setUp(self):
-        self.expectedCoordinates = IntCoordinates(-129, 361)
-        self.expectedDimensions  = IntDimensions(8, 12)
-        self.testSubject         = MinecraftMapPixelized(
+        self.testSubject = MinecraftMapPixelized(
             MinecraftMap(
                 0,
                 IntCoordinates(-125, 367),
@@ -26,26 +24,30 @@ class TestMinecraftMap(unittest.TestCase):
         )
 
     def test_coordinates(self):
+        expectedCoordinates = IntCoordinates(-129, 361)
+
         # longitude
         self.assertEqual(
-            self.expectedCoordinates.longitude(),
+            expectedCoordinates.longitude(),
             self.testSubject.coordinates().longitude()
         )
         # latitude
         self.assertEqual(
-            self.expectedCoordinates.latitude(),
+            expectedCoordinates.latitude(),
             self.testSubject.coordinates().latitude()
         )
 
     def test_dimensions(self):
+        expectedDimensions = IntDimensions(8, 12)
+
         # height
         self.assertEqual(
-            self.expectedDimensions.height(),
+            expectedDimensions.height(),
             self.testSubject.dimensions().height()
         )
         # width
         self.assertEqual(
-            self.expectedDimensions.width(),
+            expectedDimensions.width(),
             self.testSubject.dimensions().width()
         )
 
