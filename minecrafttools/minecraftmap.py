@@ -16,6 +16,16 @@ class MinecraftMap:
         self.__coordinates = coordinates
         self.__colorsMap   = colorsMap
 
+    def coordinates(self):
+        """ Returns the top left coordinates of the map
+        Returns:
+            IntCoordinates
+        """
+        return IntCoordinates(
+            self.__coordinates.longitude() - (self.dimensions().width() * pow(2, self.scale())) // 2,
+            self.__coordinates.latitude() - (self.dimensions().height() * pow(2, self.scale())) // 2
+        )
+
     def dimensions(self):
         """ Returns the dimensions of the map
         Returns:
@@ -43,16 +53,6 @@ class MinecraftMap:
             integer
         """
         return self.__colorsMap.scale()
-
-    def topLeft(self):
-        """ Returns the top left coordinates of the map
-        Returns:
-            IntCoordinates
-        """
-        return IntCoordinates(
-            self.__coordinates.longitude() - (self.dimensions().width() * pow(2, self.scale())) // 2,
-            self.__coordinates.latitude() - (self.dimensions().height() * pow(2, self.scale())) // 2
-        )
 
     def type(self):
         """ Returns the map type (surface, nether, end, etc)

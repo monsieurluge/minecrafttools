@@ -13,6 +13,13 @@ class MinecraftMapPixelized:
         """
         self.__origin = minecraftMap
 
+    def coordinates(self):
+        """ Returns the top left coordinates of the map
+        Returns:
+            IntCoordinates
+        """
+        return self.__origin.coordinates()
+
     def dimensions(self):
         """ Returns the dimensions of the map
         Returns:
@@ -45,13 +52,6 @@ class MinecraftMapPixelized:
             integer
         """
         return pow(2, self.__origin.scale())
-
-    def topLeft(self):
-        """ Returns the top left coordinates of the map
-        Returns:
-            IntCoordinates
-        """
-        return self.__origin.topLeft()
 
     def type(self):
         """ Returns the map type (surface, nether, end, etc)
