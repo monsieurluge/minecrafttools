@@ -4,7 +4,6 @@ import itertools
 import os
 import sys
 
-from minecrafttools.cartography     import Cartography
 from minecrafttools.colorsreference import ColorsReference
 from PIL                            import Image, ImageDraw
 from minecrafttools.intcoordinates  import IntCoordinates

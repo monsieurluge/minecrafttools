@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from minecrafttools.cartography     import Cartography
 from minecrafttools.colorsreference import ColorsReference
 from minecrafttools.intcoordinates  import IntCoordinates
 from minecrafttools.intdimensions   import IntDimensions
@@ -22,7 +21,7 @@ class CartographyUnique():
         self.__folder          = folder
         self.__maps            = maps
 
-    def generateInto(self, outputDirectory):
+    def save(self):
         # TODO MLG: it's time to do some refactoring here
         """ Generates a cartography picture from the maps crafted in game
         Params:
@@ -75,6 +74,6 @@ class CartographyUnique():
         for map in sorted(self.__maps.maps(), key = lambda map: (map.scale(), -1 * map.lastModification()), reverse = True):
             map.saveInto(draw, map.left() - self.__coordinates.longitude(), map.top() - self.__coordinates.latitude(), self.__colorsReference)
 
-        picture.save(os.path.join(outputDirectory, 'cartography.png'))
+        picture.save(os.path.join(self.__folder, 'cartography.png'))
 
         print('[INFO] Cartography (unique) successfully generated.')
