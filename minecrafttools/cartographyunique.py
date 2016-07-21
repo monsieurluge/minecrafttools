@@ -75,17 +75,24 @@ class CartographyUnique():
 
         # then, draw the in-game crafted maps into the picture
         for mapFile in sorted(self.__maps.maps(), key = lambda mapFile: (mapFile.content().scale(), -1 * mapFile.lastModification()), reverse = True):
+            print(mapFile.name())
             mapPixelized = MinecraftMapPixelized(mapFile.content())
             offsetX      = mapPixelized.coordinates().longitude() - self.__coordinates.longitude()
             offsetY      = mapPixelized.coordinates().latitude() - self.__coordinates.latitude()
 
             for y in range(0, mapPixelized.dimensions().height(), mapPixelized.scale()):
                 for x in range(0, mapPixelized.dimensions().width(), mapPixelized.scale()):
+                    colorId = mapPixelized.id(IntCoordinates(x, y))
+
+                    # don't draw anything if the color id is the default color
+                    if self.__colorsReference.isDefaultColor(colorId):
+                        continue
+
                     draw.rectangle(
                         [
                             offsetX + x, offsetY + y, offsetX + x + mapPixelized.scale(), offsetY + y + mapPixelized.scale()
                         ],
-                        fill = self.__colorsReference.rgb(mapPixelized.id(IntCoordinates(x, y)))
+                        fill = self.__colorsReference.rgb(colorId)
                     )
 
         picture.save(os.path.join(self.__folder, 'cartography.png'))
