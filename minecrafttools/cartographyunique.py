@@ -75,7 +75,6 @@ class CartographyUnique():
 
         # then, draw the in-game crafted maps into the picture
         for mapFile in sorted(self.__maps.maps(), key = lambda mapFile: (mapFile.content().scale(), -1 * mapFile.lastModification()), reverse = True):
-            print(mapFile.name())
             mapPixelized = MinecraftMapPixelized(mapFile.content())
             offsetX      = mapPixelized.coordinates().longitude() - self.__coordinates.longitude()
             offsetY      = mapPixelized.coordinates().latitude() - self.__coordinates.latitude()
