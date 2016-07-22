@@ -8,6 +8,7 @@ import datetime
 
 from optparse                           import OptionParser
 from minecrafttools.cartographymultiple import CartographyMultiple
+from minecrafttools.cartographyunique   import CartographyUnique
 from minecrafttools.maps                import Maps
 from minecrafttools.server              import Server
 from minecrafttools.world               import World
@@ -33,8 +34,17 @@ def generateCartography(minecraftDirectory, outputFolder, cartographyType):
             ),
             outputFolder
         )
-    # elif cartographyType == 'unique':
-    #     cartography = CartographyUnique(maps, outputFolder)
+    elif cartographyType == 'unique':
+        cartography = CartographyUnique(
+            Maps(
+                World(
+                    Server(
+                        minecraftDirectory
+                    ).worldFolder()
+                ).mapsFolder()
+            ),
+            outputFolder
+        )
     else:
         raise ValueError('"' + cartographyType + '" is not a valid cartography type')
 
