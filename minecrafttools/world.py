@@ -2,7 +2,6 @@
 
 from minecrafttools.cartographymultiple import CartographyMultiple
 from minecrafttools.cartographyunique   import CartographyUnique
-from minecrafttools.maps                import Maps
 
 import os
 import sys
@@ -20,7 +19,6 @@ class World:
             sys.exit(1)
 
         self.__folder  = folder
-        self.__maps    = Maps(os.path.join(folder, 'data'))
         self.__players = {} # Players(os.path.join(worldFolder, 'data'))
 
     def mapsFolder(self):
