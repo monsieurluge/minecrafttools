@@ -23,22 +23,12 @@ class World:
         self.__maps    = Maps(os.path.join(folder, 'data'))
         self.__players = {} # Players(os.path.join(worldFolder, 'data'))
 
-    def cartography(self, cartographyType, outputFolder):
-        """ Returns the cartography
-        Parameters:
-            cartographyType (string)
-            outputFolder (string)
+    def mapsFolder(self):
+        """ Returns the in-game crafted maps folder
         Returns:
-            Cartography
-        Raises:
-            ValueError: If the cartography type is not known
+            string
         """
-        if cartographyType == 'multiple':
-            return CartographyMultiple(self.__maps, outputFolder)
-        elif cartographyType == 'unique':
-            return CartographyUnique(self.__maps, outputFolder)
-
-        raise ValueError('"' + cartographyType + '" is not a valid cartography type')
+        return os.path.join(self.__folder, 'data')
 
     def players(self):
         """ Returns the players list

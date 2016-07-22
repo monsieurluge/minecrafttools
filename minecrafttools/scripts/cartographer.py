@@ -6,10 +6,13 @@ import sys
 import getopt
 import datetime
 
-from minecrafttools.server import Server
-from optparse              import OptionParser
+from optparse                           import OptionParser
+from minecrafttools.cartographymultiple import CartographyMultiple
+from minecrafttools.maps                import Maps
+from minecrafttools.server              import Server
+from minecrafttools.world               import World
 
-def generateCartography(minecraftDirectory, outputDirectory, cartographyType):
+def generateCartography(minecraftDirectory, outputFolder, cartographyType):
     ''' Generates the cartography
 
     Params:
@@ -19,8 +22,25 @@ def generateCartography(minecraftDirectory, outputDirectory, cartographyType):
     '''
     start = datetime.datetime.now()
 
+    if cartographyType == 'multiple':
+        cartography = CartographyMultiple(
+            Maps(
+                World(
+                    Server(
+                        minecraftDirectory
+                    ).worldFolder()
+                ).mapsFolder()
+            ),
+            outputFolder
+        )
+    # elif cartographyType == 'unique':
+    #     cartography = CartographyUnique(maps, outputFolder)
+    else:
+        raise ValueError('"' + cartographyType + '" is not a valid cartography type')
+
     try:
-        Server(minecraftDirectory).world().cartography(cartographyType, outputDirectory).save()
+        # Server(minecraftDirectory).world().cartography(cartographyType, outputDirectory).save()
+        cartography.save()
     except (ValueError, IOError) as exception:
         print('Error when trying to generate the cartography:', format(exception))
 

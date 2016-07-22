@@ -13,9 +13,10 @@ class Server:
         Params:
             minecraftDirectory (string): the directory where to find the server.properties file
         """
-        self.__properties = Properties(os.path.join(minecraftDirectory, 'server.properties'))
-        self.__whitelist  = Whitelist(os.path.join(minecraftDirectory, 'whitelist.json'))
-        self.__world      = World(os.path.join(minecraftDirectory, self.__properties.valueOf('level-name')))
+        self.__minecraftDirectory = minecraftDirectory
+        self.__properties         = Properties(os.path.join(minecraftDirectory, 'server.properties'))
+        self.__whitelist          = Whitelist(os.path.join(minecraftDirectory, 'whitelist.json'))
+        self.__world              = World(os.path.join(minecraftDirectory, self.__properties.valueOf('level-name')))
 
     def printWhitelist(self):
         """ Displays the players list """
@@ -28,3 +29,6 @@ class Server:
             World
         """
         return self.__world
+
+    def worldFolder(self):
+        return os.path.join(self.__minecraftDirectory, self.__properties.valueOf('level-name'))
