@@ -59,5 +59,9 @@ class TestMinecraftMapPixelized(unittest.TestCase):
         # scale
         self.assertEqual(4, self.testSubject.scale())
 
+    def test_type(self):
+        # type
+        self.assertEqual(0, self.testSubject.type())
+
 if __name__ == '__main__':
     unittest.main()
