@@ -55,5 +55,8 @@ class TestMinecraftMap(unittest.TestCase):
     def test_scale(self):
         self.assertEqual(2, self.testSubject.scale())
 
+    def test_type(self):
+        self.assertEqual(0, self.testSubject.type())
+
 if __name__ == '__main__':
     unittest.main()
