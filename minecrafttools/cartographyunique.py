@@ -81,11 +81,17 @@ class CartographyUnique():
 
             for y in range(0, mapPixelized.dimensions().height(), mapPixelized.scale()):
                 for x in range(0, mapPixelized.dimensions().width(), mapPixelized.scale()):
+                    colorId = mapPixelized.id(IntCoordinates(x, y))
+
+                    # don't draw anything if the color id is the default color
+                    if self.__colorsReference.isDefaultColor(colorId):
+                        continue
+
                     draw.rectangle(
                         [
                             offsetX + x, offsetY + y, offsetX + x + mapPixelized.scale(), offsetY + y + mapPixelized.scale()
                         ],
-                        fill = self.__colorsReference.rgb(mapPixelized.id(IntCoordinates(x, y)))
+                        fill = self.__colorsReference.rgb(colorId)
                     )
 
         picture.save(os.path.join(self.__folder, 'cartography.png'))
