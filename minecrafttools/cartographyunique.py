@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from minecrafttools.colorsreference       import ColorsReference
-from minecrafttools.intcoordinates        import IntCoordinates
-from minecrafttools.intdimensions         import IntDimensions
-from PIL                                  import Image, ImageDraw
-from minecrafttools.minecraftmappixelized import MinecraftMapPixelized
+from minecrafttools.cartographycoordinates import CartographyCoordinates
+from minecrafttools.cartographydimensions  import CartographyDimensions
+from minecrafttools.colorsreference        import ColorsReference
+from minecrafttools.intcoordinates         import IntCoordinates
+from minecrafttools.intdimensions          import IntDimensions
+from PIL                                   import Image, ImageDraw
+from minecrafttools.minecraftmappixelized  import MinecraftMapPixelized
 
 import os
 
@@ -17,8 +19,8 @@ class CartographyUnique():
             folder (string): the folder where to store the cartography files
         """
         self.__colorsReference = ColorsReference()
-        self.__coordinates     = None # TODO MLG : find the right way to initialize the coordinates
-        self.__dimensions      = None # TODO MLG : find the right way to initialize the dimensions
+        self.__coordinates     = CartographyCoordinates(maps)
+        self.__dimensions      = CartographyDimensions(maps)
         self.__folder          = folder
         self.__maps            = maps
 
@@ -30,40 +32,6 @@ class CartographyUnique():
         Raises:
             IOError: If the picture file cannot be created for any reason
         """
-        # first, determine the picture size
-        left   = None
-        top    = None
-        width  = 0
-        height = 0
-
-        for mapFile in self.__maps.maps():
-            mapPixelized = MinecraftMapPixelized(mapFile.content())
-
-            # move the top coordinate
-            if top is None:
-                top  = mapPixelized.coordinates().latitude()
-            elif top > mapPixelized.coordinates().latitude():
-                height += top - mapPixelized.coordinates().latitude()
-                top = mapPixelized.coordinates().latitude()
-
-            # move the left coordinate
-            if left is None:
-                left  = mapPixelized.coordinates().longitude()
-            elif left > mapPixelized.coordinates().longitude():
-                width += left - mapPixelized.coordinates().longitude()
-                left = mapPixelized.coordinates().longitude()
-
-            # increase the vertical size
-            if top + height < mapPixelized.coordinates().latitude() + mapPixelized.dimensions().height():
-                height += (mapPixelized.coordinates().latitude() + mapPixelized.dimensions().height()) - (top + height)
-
-            # increase the horizontal size
-            if left + width < mapPixelized.coordinates().longitude() + mapPixelized.dimensions().width():
-                width += (mapPixelized.coordinates().longitude() + mapPixelized.dimensions().width()) - (left + width)
-
-        self.__coordinates = IntCoordinates(left, top) # TODO MLG: move this to the constructor !
-        self.__dimensions  = IntDimensions(width, height) # TODO MLG: move this to the constructor !
-
         # create the picture with a default background color
         picture = Image.new(
             'RGB',
