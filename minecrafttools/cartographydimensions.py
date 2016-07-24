@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from minecrafttools.intdimensions import IntDimensions
+from minecrafttools.intdimensions         import IntDimensions
+from minecrafttools.minecraftmappixelized import MinecraftMapPixelized
 
 class CartographyDimensions:
 
@@ -20,40 +21,31 @@ class CartographyDimensions:
         if len(self.__cache) > 0:
             return self.__cache[0]
 
-        height = 3000
-        width  = 3000
+        bottom = -999999
+        left   = 999999
+        right  = -999999
+        top    = 999999
 
-        # left   = None
-        # top    = None
-        # width  = 0
-        # height = 0
-        #
-        # for mapFile in self.__maps.maps():
-        #     minecraftMap = mapFile.content()
-        #
-        #     # move the top coordinate
-        #     if top is None:
-        #         top  = minecraftMap.coordinates().latitude()
-        #     elif top > minecraftMap.coordinates().latitude():
-        #         height += top - minecraftMap.coordinates().latitude()
-        #         top = minecraftMap.coordinates().latitude()
-        #
-        #     # move the left coordinate
-        #     if left is None:
-        #         left  = minecraftMap.coordinates().longitude()
-        #     elif left > minecraftMap.coordinates().longitude():
-        #         width += left - minecraftMap.coordinates().longitude()
-        #         left = minecraftMap.coordinates().longitude()
-        #
-        #     # increase the vertical size
-        #     if top + height < minecraftMap.coordinates().latitude() + minecraftMap.dimensions().height():
-        #         height += (minecraftMap.coordinates().latitude() + minecraftMap.dimensions().height()) - (top + height)
-        #
-        #     # increase the horizontal size
-        #     if left + width < minecraftMap.coordinates().longitude() + minecraftMap.dimensions().width():
-        #         width += (minecraftMap.coordinates().longitude() + minecraftMap.dimensions().width()) - (left + width)
+        for mapFile in self.__maps.maps():
+            mapPixelized = MinecraftMapPixelized(mapFile.content())
+            mapLeft      = mapPixelized.coordinates().longitude()
+            mapTop       = mapPixelized.coordinates().latitude()
+            mapHeight    = mapPixelized.dimensions().height()
+            mapWidth     = mapPixelized.dimensions().width()
 
-        self.__cache.append(IntDimensions(width, height))
+            if bottom < mapTop + mapHeight:
+                bottom = mapTop + mapHeight
+
+            if left > mapLeft:
+                left = mapLeft
+
+            if right < mapLeft + mapWidth:
+                right = mapLeft + mapWidth
+
+            if top > mapTop:
+                top = mapTop
+
+        self.__cache.append(IntDimensions(right - left, bottom - top))
 
         return self.__cache[0]
 
