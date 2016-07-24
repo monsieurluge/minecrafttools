@@ -12,6 +12,7 @@ from minecrafttools.intdimensions    import IntDimensions
 from minecrafttools.minecraftmapfile import MinecraftMapFile
 
 class Maps:
+    # TODO MLG: makes this object a List
 
     def __init__(self, directory):
         """ Creates a Maps object
