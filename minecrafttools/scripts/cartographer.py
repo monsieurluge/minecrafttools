@@ -113,7 +113,7 @@ def main(arguments):
     try:
         generateCartography(minecraftDirectory, outputDirectory, cartographyType)
     except (ValueError, IOError):
-        print('Error when trying to generate the cartography (multiple):', format(exception))
+        print('Error when trying to generate the cartography:', format(exception))
 
 """ Launch the script / command-line usage """
 if __name__ == "__main__":
